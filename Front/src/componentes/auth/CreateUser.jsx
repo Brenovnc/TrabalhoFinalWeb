@@ -67,8 +67,10 @@ export default function CreateUser() {
                     <input type="password" id="passwordConf" {...register('passwordConf')} />
                     <p className='erro'>{errors.passwordConf?.message}</p>
                 </div>
-                <button type="submit">Criar Usuário</button>
-                <button type="button" onClick={handleBack}>Voltar</button>
+                <div className="button-container">
+                    <button type="submit">Criar Usuário</button>
+                    <button type="button" onClick={handleBack}>Voltar</button>
+                </div>
             </form>
             <p className='server-response'>{msg}</p>
         </>

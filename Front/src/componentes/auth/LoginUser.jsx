@@ -6,7 +6,6 @@ import * as yup from "yup";
 import axios from 'axios';
 import { useState } from 'react';
 import { Link, Navigate } from 'react-router-dom';
-import Alert from 'react-bootstrap/Alert'; // npm i react-booststrap boostrap 
 
 //Objeto para validação de campos com yup
 const schema = yup.object({
@@ -52,18 +51,19 @@ export default function LoginUser(){
 
                 <label htmlFor="email" placeholder="email">Email</label>
                 <input type="text" id="email" {...register('email')} />
+                
                 <p className='erro'>{errors.email?.message}</p>
 
                 <label htmlFor="password">Senha</label>
-                <input type="password" id="password" {...register('password')} />
+                <input type="password" id="password" {...register('password')}/>
                 <p className='erro'>{errors.password?.message}</p>
 
                 <button>Entrar</button>
             </form>
             <p className="server-response">{msg}</p>
             <div className="realizar-cadastro">
-                Não possui conta? 
-                <Link to="/criar-user">Cadastro</Link>
+                <p id='text-nPossuiConta'>Não possui conta?</p>
+                <Link to="/criar-user" id='text-cadastro'>Cadastro</Link>
             </div>
         </>
     )
