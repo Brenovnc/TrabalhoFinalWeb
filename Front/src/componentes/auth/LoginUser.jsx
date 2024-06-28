@@ -6,11 +6,12 @@ import * as yup from "yup";
 import axios from 'axios';
 import { useState } from 'react';
 import { Link, Navigate } from 'react-router-dom';
+import Alert from 'react-bootstrap/Alert'; // npm i react-booststrap boostrap 
 
 //Objeto para validação de campos com yup
 const schema = yup.object({
-    email: yup.string().email('Email inválido').required('Email obrigatório'),
-    password: yup.string().min(2,'Senha com no mínimo 2 caracteres').required(),
+    email: yup.string().email('Email inválido').required("Email obrigatório"),
+    password: yup.string().min(4,'Senha com no mínimo 4 caracteres').required(),
 }).required();
 
 
@@ -39,8 +40,9 @@ export default function LoginUser(){
         
     }
 
+    // Aqui, após o usuário estar logado ele vai ser redirecionado para a Home
     if(msg.includes('Usuário Autenticado')){
-        return <Navigate to='/listar-propriedades' />
+        return <Navigate to='/Home' />
     }
 
     return (

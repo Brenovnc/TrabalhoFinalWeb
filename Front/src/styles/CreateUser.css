@@ -40,7 +40,7 @@ input{
 .realizar-cadastro{
     display: flex;
     justify-content: space-around;
-    /* border-bottom: 1px solid #ccc; */
+    border-bottom: 1px solid #ccc;
     font-size: 1rem;
     width: 60%;
     margin: auto;
