@@ -45,7 +45,7 @@ export default function LoginUser(){
 
     return (
         <>  
-            <h2>Entre para acessar os serviços</h2>
+            <h2>Entre e planeje sua viagem</h2>
             <form onSubmit={handleSubmit(submit)} noValidate>
 
                 <label htmlFor="email" placeholder="email">Email</label>

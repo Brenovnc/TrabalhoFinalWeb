@@ -1,6 +1,5 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+// import america from './assets/americas.svg'
 import './App.css'
 import Home from './componentes/Home';
 
@@ -9,7 +8,7 @@ function App() {
 
   return (
     <>
-      <h1>Bem Vindos ao AirBnB</h1>
+      <h1>Bem vindos ao Site de viagens </h1>
       <Home />
     </>
   )

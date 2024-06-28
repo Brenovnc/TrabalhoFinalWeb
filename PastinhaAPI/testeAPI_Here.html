@@ -1,56 +1,59 @@
-<!-- https://www.here.com/docs/bundle/maps-api-for-javascript-developer-guide/page/topics/quick-start.html -->
-<!-- key HERE api: El7O8U0SD-D3gBWpF7O9aiaWQErLIqPljaEgGRXhuSE -->
-
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-    <script src="https://js.api.here.com/v3/3.1/mapsjs-core.js" type="text/javascript" charset="utf-8"></script>
-    <script src="https://js.api.here.com/v3/3.1/mapsjs-service.js" type="text/javascript" charset="utf-8"></script>
-    <script src="https://js.api.here.com/v3/3.1/mapsjs-mapevents.js" type="text/javascript" charset="utf-8"></script>
-    <script src="https://js.api.here.com/v3/3.1/mapsjs-ui.js" type="text/javascript" charset="utf-8"></script>
-    <link rel="stylesheet" type="text/css" href="https://js.api.here.com/v3/3.1/mapsjs-ui.css" />
-  </head>
-  <body>
-    <div style="width: 80vw; height: 80vh" id="mapContainer"></div>
-    <script>
-      // Initialize the platform object
-      var platform = new H.service.Platform({
-        'apikey': 'El7O8U0SD-D3gBWpF7O9aiaWQErLIqPljaEgGRXhuSE' // Ensure this is your actual API key
+<head>
+  <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+  <script src="https://js.api.here.com/v3/3.1/mapsjs-core.js" type="text/javascript" charset="utf-8"></script>
+  <script src="https://js.api.here.com/v3/3.1/mapsjs-service.js" type="text/javascript" charset="utf-8"></script>
+  <script src="https://js.api.here.com/v3/3.1/mapsjs-mapevents.js" type="text/javascript" charset="utf-8"></script>
+  <script src="https://js.api.here.com/v3/3.1/mapsjs-ui.js" type="text/javascript" charset="utf-8"></script>
+  <link rel="stylesheet" type="text/css" href="https://js.api.here.com/v3/3.1/mapsjs-ui.css" />
+</head>
+<body>
+  <div style="width: 80vw; height: 80vh" id="mapContainer"></div>
+  <script>
+    // Initialize the platform object
+    var platform = new H.service.Platform({
+      'apikey': 'El7O8U0SD-D3gBWpF7O9aiaWQErLIqPljaEgGRXhuSE' // Ensure this is your actual API key
+    });
+
+    // Obtain the default map types from the platform object
+    var defaultLayers = platform.createDefaultLayers();
+
+    // Instantiate (and display) the map
+    var map = new H.Map(
+      document.getElementById('mapContainer'),
+      defaultLayers.vector.normal.map,
+      {
+        zoom: 6, // Adjust the zoom level to show Minas Gerais
+        center: { lng: -44.5550, lat: -18.5122 } // Coordinates for Minas Gerais, Brazil
+      }
+    );
+
+    // Make the map interactive
+    var mapEvents = new H.mapevents.MapEvents(map);
+    var behavior = new H.mapevents.Behavior(mapEvents);
+
+    // Create the default UI components
+    var ui = H.ui.UI.createDefault(map, defaultLayers);
+
+    // Function to add a marker to the map
+    function addMarkerToMap(map, lat, lng, imageUrl) {
+      var icon = new H.map.Icon(imageUrl, {size: {w: 50, h: 50}}); // Adjust size if necessary
+      var coords = {lat: lat, lng: lng};
+      var marker = new H.map.Marker(coords, { icon: icon });
+
+      // Add click event listener to the marker
+      marker.addEventListener('tap', function(evt) {
+        console.log('Pin clicked!');
+        alert('Pin clicked!');
       });
 
-      // Obtain the default map types from the platform object
-      var defaultLayers = platform.createDefaultLayers();
+      map.addObject(marker);
+    }
 
-      // Instantiate (and display) the map
-      var map = new H.Map(
-        document.getElementById('mapContainer'),
-        defaultLayers.vector.normal.map,
-        {
-          zoom: 6, // Adjust the zoom level to show Minas Gerais
-          center: { lng: -44.5550, lat: -18.5122 } // Coordinates for Minas Gerais, Brazil
-        }
-      );
+    // Add a custom pin to the map in Minas Gerais
+    addMarkerToMap(map, -18.5122, -44.5550, 'pinVermelhin.png'); // Make sure this URL is correct
 
-      // Make the map interactive
-      var mapEvents = new H.mapevents.MapEvents(map);
-      var behavior = new H.mapevents.Behavior(mapEvents);
-
-      // Create the default UI components
-      var ui = H.ui.UI.createDefault(map, defaultLayers);
-
-      // Function to add a marker to the map
-      function addMarkerToMap(map, lat, lng, imageUrl) {
-        var icon = new H.map.Icon(imageUrl, {size: {w: 50, h: 50}}); // Adjust size if necessary
-        var coords = {lat: lat, lng: lng};
-        var marker = new H.map.Marker(coords, { icon: icon });
-        map.addObject(marker);
-      }
-
-      // Add a custom pin to the map in Minas Gerais
-      addMarkerToMap(map, -18.5122, -44.5550, 'pinVermelhin.png');
-
-    </script>
-  </body>
+  </script>
+</body>
 </html>
-
