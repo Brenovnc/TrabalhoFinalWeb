@@ -46,27 +46,29 @@ export default function CreateUser() {
 
     return (
         <>
-            <h2>Crie uma nova conta</h2>
-            <form onSubmit={handleSubmit(submit)} noValidate>
+            <div class="login">
+                <h2>Crie uma nova conta</h2>
+                <form onSubmit={handleSubmit(submit)} noValidate>
 
-                <InputField id="username" type="text" label="Usuário"
-                            register={register("username")} error={errors.username}/>
-                
-                <InputField id="email" type="text" label="Email"
-                            register={register("email")} error={errors.email}/>
-                
-                <InputField id="password" type="password" label="Senha"
-                            register={register("password")} error={errors.password}/>
-                
-                <InputField id="passwordConf" type="password" label="Confirmar Senha"
-                            register={register("passwordConf")} error={errors.passwordConf}/>
-                
-                <div class='button-container'>
-                    <button type="submit">Criar Usuário</button>
-                    <button type="button" onClick={handleBack}>Voltar</button>
-                </div>
-            </form>
-            <p className='server-response'>{msg}</p>
+                    <InputField id="username" type="text" label="Usuário"
+                                register={register("username")} error={errors.username}/>
+                    
+                    <InputField id="email" type="text" label="Email"
+                                register={register("email")} error={errors.email}/>
+                    
+                    <InputField id="password" type="password" label="Senha"
+                                register={register("password")} error={errors.password}/>
+                    
+                    <InputField id="passwordConf" type="password" label="Confirmar Senha"
+                                register={register("passwordConf")} error={errors.passwordConf}/>
+                    
+                    <div class='button-container'>
+                        <button type="submit">Criar Usuário</button>
+                        <button type="button" onClick={handleBack}>Voltar</button>
+                    </div>
+                </form>
+                <p className='server-response'>{msg}</p>
+            </div>
         </>
     )
 }

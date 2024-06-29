@@ -2,6 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App.jsx'
 import './index.css'
+import MapScreen from './componentes/mapa/MapScreen.jsx'
 
 import {createBrowserRouter, RouterProvider} from 'react-router-dom'
 import LoginUser from './componentes/auth/LoginUser.jsx'
@@ -24,8 +25,8 @@ const routes = createBrowserRouter([
     ]
   },
   {
-    path: '/path',
-    element: <p/>
+    path: '/MapScreen',
+    element: <MapScreen />
   },
   //   path: '/atualizar-propriedade',
   //   element : <AtualizarPropriedade />
