@@ -6,6 +6,7 @@ import * as yup from "yup";
 import axios from 'axios';
 import { useState } from 'react';
 import { Link, Navigate } from 'react-router-dom';
+import InputField from './InputField';
 
 //Objeto para validação de campos com yup
 const schema = yup.object({
@@ -48,17 +49,12 @@ export default function LoginUser(){
         <>  
             <h2>Entre e planeje sua viagem</h2>
             <form onSubmit={handleSubmit(submit)} noValidate>
-
-                <label htmlFor="email" placeholder="email">Email</label>
-                <input type="text" id="email" {...register('email')} />
                 
-                <p className='erro'>{errors.email?.message}</p>
-
-                <label htmlFor="password">Senha</label>
-                <input type="password" id="password" {...register('password')}/>
-                <p className='erro'>{errors.password?.message}</p>
-
+                {/* Cria diretamente um label, um input e uma mensagem de erro que recebe o erro emitido pelo yup*/}
+                <InputField id="email" type="text" label="Email" register={register('email')} error={errors.email}/>
+                <InputField id="password" type="password" label="Senha" register={register('password')} error={errors.password}/>
                 <button>Entrar</button>
+
             </form>
             <p className="server-response">{msg}</p>
             <div className="realizar-cadastro">

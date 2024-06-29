@@ -5,6 +5,7 @@ import { yupResolver } from "@hookform/resolvers/yup"; // npm i @hookform/resolv
 import * as yup from "yup"; // npm i yup
 import axios from 'axios'; // npm i axios
 import { useNavigate, Navigate } from 'react-router-dom'; // Import useNavigate
+import InputField from './InputField';
 
 const schema = yup.object({
     username: yup.string().required('Usuário obrigatório'),
@@ -47,27 +48,20 @@ export default function CreateUser() {
         <>
             <h2>Crie uma nova conta</h2>
             <form onSubmit={handleSubmit(submit)} noValidate>
-                <div className="input-container">
-                    <label htmlFor="username">Usuário</label>
-                    <input type="text" id="username" {...register('username')} />
-                    <p className='erro'>{errors.username?.message}</p>
-                </div>
-                <div className="input-container">
-                    <label htmlFor="email">Email</label>
-                    <input type="text" id="email" {...register('email')} />
-                    <p className='erro'>{errors.email?.message}</p>
-                </div>
-                <div className="input-container">
-                    <label htmlFor="password">Senha</label>
-                    <input type="password" id="password" {...register('password')} />
-                    <p className='erro'>{errors.password?.message}</p>
-                </div>
-                <div className="input-container">
-                    <label htmlFor="passwordConf">Confirmar Senha</label>
-                    <input type="password" id="passwordConf" {...register('passwordConf')} />
-                    <p className='erro'>{errors.passwordConf?.message}</p>
-                </div>
-                <div className="button-container">
+
+                <InputField id="username" type="text" label="Usuário"
+                            register={register("username")} error={errors.username}/>
+                
+                <InputField id="email" type="text" label="Email"
+                            register={register("email")} error={errors.email}/>
+                
+                <InputField id="password" type="password" label="Senha"
+                            register={register("password")} error={errors.password}/>
+                
+                <InputField id="passwordConf" type="password" label="Confirmar Senha"
+                            register={register("passwordConf")} error={errors.passwordConf}/>
+                
+                <div class='button-container'>
                     <button type="submit">Criar Usuário</button>
                     <button type="button" onClick={handleBack}>Voltar</button>
                 </div>

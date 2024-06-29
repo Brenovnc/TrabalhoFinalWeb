@@ -96,3 +96,18 @@ button {
     padding: 0pc 5px;
     margin-top: 10px;
 }
+
+.div-InputField {
+    margin: 10px 0px;
+}
+
+.div-InputField {
+    position: relative;
+}
+
+.error-tooltip {
+    margin-left: 5px;
+    color: red;
+    cursor: pointer;
+    font-weight: bold;
+}
