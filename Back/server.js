@@ -10,6 +10,10 @@ app.get("/", (req, res) => {
     res.send('Hello Word!')
 });
 
+app.get('/cadastro', (req, res) => {
+    res.send('Hello Word!')
+});
+
 app.listen(3000, ()=> {
     console.log("Listening on port 5000")
 });
