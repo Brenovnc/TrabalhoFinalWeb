@@ -2,11 +2,13 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App.jsx'
 import './index.css'
-import MapScreen from './componentes/mapa/MapScreen.jsx'
 
 import {createBrowserRouter, RouterProvider} from 'react-router-dom'
 import LoginUser from './componentes/auth/LoginUser.jsx'
 import CreateUser from './componentes/auth/CreateUser.jsx'
+
+
+import ComprarPassagem from './componentes/mapa/ComprarPassagem.jsx'
 // import AtualizarPropriedade from './componentes/AtualizarPropriedade.jsx'
 
 const routes = createBrowserRouter([
@@ -15,7 +17,7 @@ const routes = createBrowserRouter([
     element : <App />,
     children: [
       {
-        path : '/',
+        path : '/login-user',
         element : <LoginUser />
       },
       {
@@ -25,8 +27,8 @@ const routes = createBrowserRouter([
     ]
   },
   {
-    path: '/MapScreen',
-    element: <MapScreen />
+    path: '/ComprarPassagem',
+    element: <ComprarPassagem />
   },
   //   path: '/atualizar-propriedade',
   //   element : <AtualizarPropriedade />
