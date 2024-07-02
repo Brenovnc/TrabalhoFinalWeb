@@ -56,34 +56,7 @@ router.post('/login', async (req,res) => {
 //requisição POST para cadastrar usuário.
 //rota pública
 router.post('/create', async (req,res) => {
-    //extraindo os dados do formulário para criacao do usuario
-    const {username, email, password} = req.body; 
-    //Para facilitar já estamos considerando as validações feitas no front
-    //agora vamos verificar se já existe usuário com esse e-mail
     
-    //verifica se já existe usuario com o email informado
-    for (let users of usuariosCadastrados){
-        if(users.email === email){
-            //usuario já existe. Impossivel criar outro
-            //Retornando o erro 409 para indicar conflito
-            return res.status(409).send(`Usuario com email ${email} já existe.`);
-        }   
-    }
-    //Deu certo. Vamos colocar o usuário no "banco"
-    //Gerar um id incremental baseado na qt de users
-    const id = usuariosCadastrados.length + 1;
-    
-    //gerar uma senha cryptografada
-    const salt = await bcrypt.genSalt(10);
-    const passwordCrypt = await bcrypt.hash(password,salt);
-
-    //Criacao do user
-    const user = new User(id, username, email, passwordCrypt);
-
-    //Salva user no "banco"
-    usuariosCadastrados.push(user);
-    fs.writeFileSync(bdPath,JSON.stringify(usuariosCadastrados,null,2));
-    res.send(`Tudo certo usuario criado com sucesso. id=${id}`);
 });
 
 module.exports = router;
