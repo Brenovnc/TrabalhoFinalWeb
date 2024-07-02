@@ -15,7 +15,7 @@ function App() {
       {/* O ToastContainer é necessário ser colocado aqui para realizar
       mensagens de erro que aparecem no canto direito na tela de login */}
       <ToastContainer />
-      <h1>Bem vindos ao Site de viagens </h1>
+      {/* <h1>Bem vindos ao Site de viagens </h1> */}
       <Home />
     </>
   )

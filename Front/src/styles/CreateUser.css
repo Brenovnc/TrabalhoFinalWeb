@@ -1,4 +1,4 @@
-@import url(https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap);
+/* @import url(https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap);
 
 * {
     font-family: "Montserrat", sans-serif;
@@ -13,8 +13,8 @@ body {
     /* background-image: url(https://images.unsplash.com/photo-1569596082827-c5e8990496cb?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);
     background-size: cover;
     background-position: center;
-    background-blend-mode: overlay; */
-}
+    background-blend-mode: overlay;
+} 
 
 form {
     text-align: center;
@@ -114,13 +114,4 @@ button {
     color: red;
     cursor: pointer;
     font-weight: bold;
-}
-
-.login {
-    border: 2px solid white;
-    border-radius: 50px;
-    width: 700px;
-    margin-top: 30px;
-    padding: 30px 50px;
-    background-color: #242424AA;
-}
+} */
