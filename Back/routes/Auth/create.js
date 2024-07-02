@@ -3,7 +3,6 @@ const fs = require('fs');
 const path = require('path');
 const User = require("../../models/User");
 const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken');
 
 const bdPath = path.join(__dirname,'..','..', 'db','banco-dados-usuario.json');
 const usuariosCadastrados = JSON.parse(fs.readFileSync(bdPath, {encoding: 'utf-8'}));
@@ -26,7 +25,7 @@ createRouter.post(
     const passwordCrypt = await bcrypt.hash(password,salt);
     const tickets = [];
 
-    const user = new User(id, username, email, passwordCrypt, tickets);
+    const user = new User(id, username, 'user', email, passwordCrypt, tickets);
 
     usuariosCadastrados.push(user);
     fs.writeFileSync(bdPath,JSON.stringify(usuariosCadastrados,null,2));

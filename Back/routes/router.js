@@ -1,6 +1,7 @@
 const { Router } = require('express');
 const { createRouter } = require('./Auth/create');
 const { loginRouter } = require('./Auth/login');
+const { ticketRouter } = require('./Tickets/buyTicket');
 
 const mainRouter = Router();
 
@@ -17,5 +18,6 @@ mainRouter.get('/', (req, res) => {
 
 mainRouter.use('/cadastro', createRouter);
 mainRouter.use('/login', loginRouter);
+mainRouter.use('/passagens', ticketRouter);
 
 module.exports = { mainRouter };

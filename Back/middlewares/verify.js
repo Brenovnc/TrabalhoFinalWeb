@@ -1,18 +1,15 @@
-const verifyToken = (req, res, next) => {
-  const token = req.headers['authorization'];
+const jwt = require('jsonwebtoken');
+require('dotenv').config();
 
-  if (!token) {
-    return res.status(403).send('A token is required for authentication');
-  }
+function verifyToken(token) {
 
   try {
-    const decoded = jwt.verify(token, SECRET_KEY);
-    req.user = decoded;
-  } catch (err) {
-    return res.status(401).send('Invalid Token');
+      const decoded = jwt.verify(token, 'teste');
+      return decoded;
+  } catch (error) {
+      console.error('Invalid token:', error);
+      return null;
   }
-
-  return next();
-};
+}
 
 module.exports = { verifyToken }
