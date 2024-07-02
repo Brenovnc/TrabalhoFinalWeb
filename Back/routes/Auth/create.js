@@ -1,13 +1,12 @@
 const { Router } = require("express");
 const fs = require('fs');
 const path = require('path');
-const User = require("../models/User");
+const User = require("../../models/User");
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
-const bdPath = path.join(__dirname,'..','db','banco-dados-usuario.json');
+const bdPath = path.join(__dirname,'..','..', 'db','banco-dados-usuario.json');
 const usuariosCadastrados = JSON.parse(fs.readFileSync(bdPath, {encoding: 'utf-8'}));
-
 
 const createRouter = Router()
 

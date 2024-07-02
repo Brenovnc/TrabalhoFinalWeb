@@ -1,7 +1,7 @@
 //importar libs externas
 const express = require("express");
 const cors = require("cors");
-const { mainRouter } = require("./router");
+const { mainRouter } = require("./routes/router");
 
 const app = express();
 

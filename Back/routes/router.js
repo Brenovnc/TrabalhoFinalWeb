@@ -1,5 +1,6 @@
 const { Router } = require('express');
-const { createRouter } = require('./routes/create');
+const { createRouter } = require('./Auth/create');
+const { loginRouter } = require('./Auth/login');
 
 const mainRouter = Router();
 
@@ -15,5 +16,6 @@ mainRouter.get('/', (req, res) => {
 });
 
 mainRouter.use('/cadastro', createRouter);
+mainRouter.use('/login', loginRouter);
 
 module.exports = { mainRouter };
