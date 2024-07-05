@@ -1,6 +1,8 @@
 const { Router } = require('express');
 const { createRouter } = require('./Auth/create');
 const { loginRouter } = require('./Auth/login');
+const { localidadesRouter } = require('./localidades');
+const { mapRouter } = require('./map');
 
 const mainRouter = Router();
 
