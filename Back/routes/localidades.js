@@ -8,14 +8,14 @@ const localidadeRouter = express.Router();
 const fs = require('fs');
 const path = require('path');
 
-//Validação do token
-const jwt = require('jsonwebtoken');
+// //Validação do token
+// const jwt = require('jsonwebtoken');
 
 //Conexao com banco de dados
 const bdPath = path.join(__dirname,'..','db','localidades.json');
 const localidades = JSON.parse(fs.readFileSync(bdPath, {encoding: 'utf-8'}));
 
-router.post('/', autenticarToken, (req, res) => {
+localidadeRouter.post('/', (req, res) => {
 
     const {nome, latitude, longitude, passagens} = req.body
 
@@ -40,7 +40,7 @@ router.post('/', autenticarToken, (req, res) => {
 
 })
 
-router.put('/', autenticarToken, (req, res) => {
+localidadeRouter.put('/', (req, res) => {
 
     const {id, nome, latitude, longitude, passagens, imgs} = req.body
 
@@ -68,7 +68,7 @@ router.put('/', autenticarToken, (req, res) => {
 
 })
 
-router.delete('/:id', autenticarToken, (req, res) => {
+localidadeRouter.delete('/:id', (req, res) => {
 
     const {id} = req.params
 
@@ -80,27 +80,27 @@ router.delete('/:id', autenticarToken, (req, res) => {
     fs.writeFileSync(bdPath, JSON.stringify(localidades,null,2));
 
     res.status(200).send('Localidade Removida!');
-})
+});
 
 
 
 
 
 
-function autenticarToken(req,res,next){
-    const authH = req.headers['authorization'];
-    const token = authH && authH.split(' ')[1];
-    if(token === null) return res.status(401).send('Token não encontrado');
+// function autenticarToken(req,res,next){
+//     const authH = req.headers['authorization'];
+//     const token = authH && authH.split(' ')[1];
+//     if(token === null) return res.status(401).send('Token não encontrado');
     
-    //verificando o token
-    try {
-        const user = jwt.verify(token, process.env.TOKEN);
-        req.user = user;
-        next(); //Se token é válido, avança chamando next()
-    } catch (error) {
-        res.status(403).send('Token inválido');
-    }
+//     //verificando o token
+//     try {
+//         const user = jwt.verify(token, process.env.TOKEN);
+//         req.user = user;
+//         next(); //Se token é válido, avança chamando next()
+//     } catch (error) {
+//         res.status(403).send('Token inválido');
+//     }
    
-}
+// }
 
-export { localidadeRouter }
+module.exports =  { localidadeRouter }

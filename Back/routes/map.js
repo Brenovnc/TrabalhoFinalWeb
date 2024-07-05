@@ -1,7 +1,10 @@
 //importar libs externas
-import H from '@here/maps-api-for-javascript'
+// import H from '@here/maps-api-for-javascript'
+
+
 
 const express = require('express'); //npm i express
+const H = require('here-js-api');
 
 //O router permite separar nosso servidor em rotas
 const mapRouter = express.Router();    
@@ -23,7 +26,7 @@ var platform = new H.service.Platform({
 });
 
 
-router.get('/', autenticarToken, (req, res) => {
+mapRouter.get('/', autenticarToken, (req, res) => {
     // Obtain the default map types from the platform object
     var maptypes = platform.createDefaultLayers();
 
@@ -88,4 +91,4 @@ function autenticarToken(req,res,next){
    
 }
 
-export { mapRouter }
+module.exports = { mapRouter }
