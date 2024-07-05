@@ -6,6 +6,9 @@ import './index.css'
 import {createBrowserRouter, RouterProvider} from 'react-router-dom'
 import LoginUser from './componentes/auth/LoginUser.jsx'
 import CreateUser from './componentes/auth/CreateUser.jsx'
+
+
+import ComprarPassagem from './componentes/mapa/ComprarPassagem.jsx'
 // import AtualizarPropriedade from './componentes/AtualizarPropriedade.jsx'
 
 const routes = createBrowserRouter([
@@ -24,8 +27,8 @@ const routes = createBrowserRouter([
     ]
   },
   {
-    path: '/path',
-    element: <p/>
+    path: '/ComprarPassagem',
+    element: <ComprarPassagem />
   },
   //   path: '/atualizar-propriedade',
   //   element : <AtualizarPropriedade />
