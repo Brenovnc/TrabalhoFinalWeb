@@ -9,7 +9,6 @@ import CreateUser from './componentes/auth/CreateUser.jsx'
 
 
 import ComprarPassagem from './componentes/mapa/ComprarPassagem.jsx'
-// import AtualizarPropriedade from './componentes/AtualizarPropriedade.jsx'
 
 const routes = createBrowserRouter([
   {
@@ -21,13 +20,13 @@ const routes = createBrowserRouter([
         element : <LoginUser />
       },
       {
-        path: 'criar-user',
+        path: '/Cadastro',
         element : <CreateUser />
       }
     ]
   },
   {
-    path: '/ComprarPassagem',
+    path: '/home',
     element: <ComprarPassagem />
   },
   //   path: '/atualizar-propriedade',

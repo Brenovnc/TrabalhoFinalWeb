@@ -11,11 +11,11 @@ function ComprarPassagem() {
         <>
             <Navbar className="bg-body-tertiary">
             <Container>
-                <Navbar.Brand href="/ComprarPassagem">Site de viagens</Navbar.Brand>
+                <Navbar.Brand href="/home">Site de viagens</Navbar.Brand>
                 <Navbar.Toggle />
                 <Navbar.Collapse className="justify-content-end">
                 <Navbar.Text>
-                    Logado como: <a href="/login-user">Nome do usuário</a>
+                    Logado como: <a href="/">Nome do usuário</a>
                 </Navbar.Text>
                 </Navbar.Collapse>
             </Container>
