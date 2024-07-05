@@ -4,6 +4,7 @@ import "../../styles/ComprarPassagem.css"
 
 import Container from 'react-bootstrap/Container';
 import Navbar from 'react-bootstrap/Navbar';
+import Nav from 'react-bootstrap/Nav';
 
 function ComprarPassagem() {
 
@@ -12,6 +13,7 @@ function ComprarPassagem() {
             <Navbar className="bg-body-tertiary">
             <Container>
                 <Navbar.Brand href="/home">Site de viagens</Navbar.Brand>
+                <Nav.Link href="#home">Home</Nav.Link>
                 <Navbar.Toggle />
                 <Navbar.Collapse className="justify-content-end">
                 <Navbar.Text>
