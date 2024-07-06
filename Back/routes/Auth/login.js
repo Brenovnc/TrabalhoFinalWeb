@@ -13,13 +13,13 @@ const usuariosCadastrados = JSON.parse(fs.readFileSync(bdPath, {encoding: 'utf-8
 loginRouter.post('/', async (req,res) => {
 
     const {email, password} = req.body; 
-    
     for (let user of usuariosCadastrados){
         if(user.email === email){
             const passwordValidado = await bcrypt.compare(password, user.password);
             if(passwordValidado===true){
-                const tokenAcesso = jwt.sign(user, process.env.TOKEN, { expiresIn: '1h' });
-                return res.status(200).json(tokenAcesso);
+                console.log(process.env.TOKEN)
+                const tokenAcesso = jwt.sign(user, 'teste', { expiresIn: '1h' });
+                return res.status(200).json(`Token: ${tokenAcesso}`);
             }
             else
                 return res.status(422).send(`Usuario ou senhas incorretas.`);
