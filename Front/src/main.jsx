@@ -6,9 +6,11 @@ import './index.css'
 import {createBrowserRouter, RouterProvider} from 'react-router-dom'
 import LoginUser from './componentes/auth/LoginUser.jsx'
 import CreateUser from './componentes/auth/CreateUser.jsx'
-
+import NotFound from './componentes/NotFound.jsx'
+import ProtectedRoute from './componentes/ProtectedRoute.jsx'
 
 import ComprarPassagem from './componentes/mapa/ComprarPassagem.jsx'
+import InserirNovoLocal from './componentes/TelaAdmin/TelaPrincipal.jsx'
 
 const routes = createBrowserRouter([
   {
@@ -27,11 +29,20 @@ const routes = createBrowserRouter([
   },
   {
     path: '/home',
-    element: <ComprarPassagem />
+    element: (
+      <ProtectedRoute>
+        <ComprarPassagem />
+      </ProtectedRoute>
+    ),
   },
-  //   path: '/atualizar-propriedade',
-  //   element : <AtualizarPropriedade />
-  // }
+  {
+    path: '/admin',
+    element: <InserirNovoLocal />
+  },
+  {
+    path: '*', // Rota padrão caso n se encontre outra
+    element: <NotFound />,
+  },
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(

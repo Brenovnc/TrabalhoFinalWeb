@@ -1,0 +1,19 @@
+.conteudo-principal {
+  display: flex;
+  flex-direction: column; /* Coloca os itens um abaixo do outro */
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  padding: 20px; /* Adiciona espaçamento interno */
+}
+
+.buttons-container {
+  margin-top: 20px; /* Espaçamento superior para separar dos elementos acima */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#enviar {
+  width: 140px;
+}

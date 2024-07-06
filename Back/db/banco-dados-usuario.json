@@ -12,5 +12,12 @@
     "email": "teste12@gmail.com",
     "password": "$2b$10$KFPd/23e/0blp0RG71eLc.QutprmDFE8x/pdlQGqJu1qiUalOMmdC",
     "tickets": []
+  },
+  {
+    "id": 3,
+    "username": "breno",
+    "email": "breno@breno",
+    "password": "$2b$10$r6TiuX9x77.twTHZWrP51OEeuVwaEMpCgFqhW2.4kpUCGvOUZmvAm",
+    "tickets": []
   }
 ]
