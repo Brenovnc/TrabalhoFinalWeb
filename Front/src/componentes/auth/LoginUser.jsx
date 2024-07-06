@@ -1,15 +1,16 @@
-import React, { useState, useEffect } from 'react';
+// src/componentes/auth/LoginUser.jsx
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import axios from 'axios';
-import { Link, Navigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import InputField from './InputField';
-import bgLogin from '../../assets/teste.jpeg';
-import "../../styles/personalizado.css";
 import { Button, Form, Container, Col, Image, Row } from 'react-bootstrap';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import bgLogin from '../../assets/teste.jpeg';
+import "../../styles/personalizado.css";
 
 const schema = yup.object({
   email: yup.string().email('Email inválido').required('Email obrigatório'),
@@ -17,8 +18,8 @@ const schema = yup.object({
 }).required();
 
 export default function LoginUser() {
-  const [msg, setMsg] = useState(' ');
-  const [redirect, setRedirect] = useState(false); // Estado para controlar o redirecionamento
+  const [msg, setMsg] = useState('');
+  const navigate = useNavigate();
 
   const form = useForm({
     resolver: yupResolver(schema),
@@ -30,7 +31,7 @@ export default function LoginUser() {
   const submit = async (data) => {
     try {
       const response = await axios.post('http://localhost:3000/api/login', data);
-      sessionStorage.setItem('token', response.data);
+      sessionStorage.setItem('token', response.data); // Salva o token no sessionStorage
       setMsg('Usuário Autenticado');
       toast.success('Usuário Autenticado', {
         position: "top-right",
@@ -41,9 +42,9 @@ export default function LoginUser() {
         draggable: true,
         progress: undefined,
       });
-
-      // Adicionando um delay antes de redirecionar
-      setTimeout(() => setRedirect(true), 2000);
+      setTimeout(() => {
+        navigate('/home');
+      }, 2000); // Redireciona para /home após 2 segundos
     } catch (error) {
       setMsg(error.response.data);
       toast.error(error.response.data, {
@@ -56,11 +57,7 @@ export default function LoginUser() {
         progress: undefined,
       });
     }
-  }
-
-  if (redirect) {
-    return <Navigate to='/home' />
-  }
+  };
 
   return (
     <>
@@ -86,15 +83,16 @@ export default function LoginUser() {
               </Form>
               <div className="realizar-cadastro mt-3">
                 <p id='text-nPossuiConta'>Não possui conta?</p>
-                <Link to="/cadastro" id='text-cadastro' className='text-bark-brown'>Cadastro</Link>
+                <Link to="/Cadastro" id='text-cadastro' className='text-bark-brown'>Cadastro</Link>
               </div>
             </div>
           </Col>
         </Row>
       </Container>
     </>
-  )
+  );
 }
+
 
 
 
