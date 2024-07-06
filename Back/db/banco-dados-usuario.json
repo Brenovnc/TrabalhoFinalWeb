@@ -21,5 +21,13 @@
     "email": "breno@breno",
     "password": "$2b$10$r6TiuX9x77.twTHZWrP51OEeuVwaEMpCgFqhW2.4kpUCGvOUZmvAm",
     "tickets": []
+  },
+  {
+    "id": 4,
+    "username": "pedro",
+    "role": "user",
+    "email": "pedro@gmail.com",
+    "password": "$2b$10$2YR3XOCEeWk5Z1Y4FWOzCuoWt2Hmttk4gu59ccoyPA0IbVFu0FHhC",
+    "tickets": []
   }
 ]
