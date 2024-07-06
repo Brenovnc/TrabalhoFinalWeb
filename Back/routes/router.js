@@ -20,6 +20,6 @@ mainRouter.get('/', (req, res) => {
 mainRouter.use('/cadastro', createRouter);
 mainRouter.use('/login', loginRouter);
 mainRouter.use('/passagens', ticketRouter);
-mainRouter,use('/localidades', localidadeRouter);
+mainRouter.use('/localidades', localidadeRouter);
 
 module.exports = { mainRouter };
