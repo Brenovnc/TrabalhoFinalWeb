@@ -2,7 +2,6 @@ const { Router } = require('express');
 const { createRouter } = require('./Auth/create');
 const { loginRouter } = require('./Auth/login');
 const { localidadeRouter } = require('./localidades');
-const { mapRouter } = require('./map');
 
 const mainRouter = Router();
 
@@ -19,7 +18,6 @@ mainRouter.get('/', (req, res) => {
 
 mainRouter.use('/cadastro', createRouter);
 mainRouter.use('/login', loginRouter);
-mainRouter.use('/map', mapRouter);
 mainRouter.use('/localidade', localidadeRouter);
 
 module.exports = { mainRouter };
