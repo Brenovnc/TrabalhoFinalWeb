@@ -44,7 +44,7 @@ export default function LoginUser() {
       });
       setTimeout(() => {
         navigate('/home');
-      }, 2000); // Redireciona para /home após 2 segundos
+      }, 500); // Redireciona para /home após 2 segundos
     } catch (error) {
       setMsg(error.response.data);
       toast.error(error.response.data, {
