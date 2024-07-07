@@ -5,7 +5,7 @@
     "latitude": -22.412742961670933,
     "longitude": -45.44970030988119,
     "precoPassagem": 222,
-    "passagens": 5,
+    "passagens": 1,
     "imgs": []
   },
   {
@@ -24,6 +24,15 @@
     "longitude": -20.93578593050772,
     "precoPassagem": 30,
     "passagens": 10,
+    "imgs": []
+  },
+  {
+    "id": 3,
+    "nome": "Paraiso",
+    "latitude": 3,
+    "longitude": 3,
+    "precoPassagem": 3,
+    "passagens": 3,
     "imgs": []
   }
 ]

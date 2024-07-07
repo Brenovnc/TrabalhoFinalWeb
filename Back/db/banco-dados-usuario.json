@@ -22,7 +22,11 @@
     "email": "breno@breno2",
     "password": "$2b$10$.lxspVJ5TFBueFDyyLnJhujE./KWmKnw2h7T1FBtGZI34D6igYoH.",
     "tickets": [
-      6
+      6,
+      7,
+      8,
+      9,
+      10
     ]
   }
 ]
