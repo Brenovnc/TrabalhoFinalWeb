@@ -10,7 +10,8 @@ function isUser(req, res, next) {
 
   const decoded = verifyToken(token);
   if (decoded && decoded.role === 'user') {
-      next();
+    req.user = decoded;
+    next();
   } else {
       return res.status(403).json({ message: 'Acesso inválido!' });
   }

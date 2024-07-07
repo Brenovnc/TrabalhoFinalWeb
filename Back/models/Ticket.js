@@ -4,7 +4,7 @@ class Ticket {
       this.id = id;
       this.location = location;
       this.price = price;
-      this.user = user;
+      this.userId = user;
       this.travelDate = travelDate;
       this.date = date;
       this.valid = valid;

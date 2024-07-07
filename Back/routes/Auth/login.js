@@ -17,9 +17,8 @@ loginRouter.post('/', async (req,res) => {
         if(user.email === email){
             const passwordValidado = await bcrypt.compare(password, user.password);
             if(passwordValidado===true){
-                console.log(process.env.TOKEN)
                 const tokenAcesso = jwt.sign(user, 'teste', { expiresIn: '1h' });
-                return res.status(200).json(`Token: ${tokenAcesso}`);
+                return res.status(200).json(tokenAcesso);
             }
             else
                 return res.status(422).send(`Usuario ou senhas incorretas.`);

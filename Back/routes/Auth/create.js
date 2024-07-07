@@ -19,7 +19,12 @@ createRouter.post(
         }   
       }
 
-    const id = usuariosCadastrados.length + 1;
+    let id;
+    if(usuariosCadastrados.length > 0){
+      id = Math.max(...ids) + 1;
+    }else{
+      id = 0;
+    }
     
     const salt = await bcrypt.genSalt(10);
     const passwordCrypt = await bcrypt.hash(password,salt);

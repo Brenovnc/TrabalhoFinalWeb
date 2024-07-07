@@ -8,14 +8,6 @@
     "tickets": []
   },
   {
-    "id": 2,
-    "username": "teste",
-    "role": "user",
-    "email": "teste12@gmail.com",
-    "password": "$2b$10$qnO8Bfrz/14KHDdvG9k/peFkBW.qG7H0J2t1d1O187G8OvcZkfxhC",
-    "tickets": []
-  },
-  {
     "id": 3,
     "username": "breno",
     "email": "breno@breno",
@@ -28,6 +20,16 @@
     "role": "user",
     "email": "pedro@gmail.com",
     "password": "$2b$10$2YR3XOCEeWk5Z1Y4FWOzCuoWt2Hmttk4gu59ccoyPA0IbVFu0FHhC",
+    "tickets": [
+      12
+    ]
+  },
+  {
+    "id": 5,
+    "username": "testeUser",
+    "role": "user",
+    "email": "testeUser@gmail.com",
+    "password": "$2b$10$qtOqOtuhZf0wUniW50oVkOUcKKDrRFlIyxOrmHyBydiCZTXZ/VUVe",
     "tickets": []
   }
 ]
