@@ -1,18 +1,2 @@
 [
-  {
-    "id": 0,
-    "username": "ryan",
-    "role": "admin",
-    "email": "ryan@gmail.com",
-    "password": "$2b$10$nzgp4pdYN.iTP6udAdOhPu9qVCPU0YFCsI9NjunnCOz1TD6kqPzvW",
-    "tickets": []
-  },
-  {
-    "id": 1,
-    "username": "breno",
-    "role": "user",
-    "email": "breno@gmail.com",
-    "password": "$2b$10$WksT2cHrx2xJUbE9vo0PzO4k1fPmb3obLI6lPmyAhL6f1gYZG6kGy",
-    "tickets": []
-  }
 ]

@@ -116,9 +116,11 @@ const InserirNovoLocal = () => {
         </Form.Group>
 
         <Form onSubmit={handleSubmit}>
+          <div className="d-flex justify-content-center mt-3">
             <Button variant="success" type="submit" id="enviar">
-            Enviar
+              Enviar
             </Button>
+          </div>
         </Form>
 
     </Form>

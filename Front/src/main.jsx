@@ -11,6 +11,7 @@ import ProtectedRoute from './componentes/ProtectedRoute.jsx'
 
 import ComprarPassagem from './componentes/mapa/ComprarPassagem.jsx'
 import InserirNovoLocal from './componentes/TelaAdmin/TelaPrincipal.jsx'
+import PerfilUsuario from './componentes/TelaVerPassagens/PerfilUsuario.jsx'
 
 const routes = createBrowserRouter([
   {
@@ -34,6 +35,10 @@ const routes = createBrowserRouter([
         <ComprarPassagem />
       </ProtectedRoute>
     ),
+  },
+  {
+    path: '/perfil',
+    element: <PerfilUsuario />
   },
   {
     path: '/admin',

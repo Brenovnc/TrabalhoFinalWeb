@@ -51,8 +51,8 @@ const AtualizarLocal = () => {
   };
 
   return (
-    <Form noValidate validated={validated} onSubmit={handleSubmit}>
-      <Form.Group controlId="localSelecionado">
+    <Form noValidate validated={validated} onSubmit={handleSubmit} className="d-flex flex-column align-items-center">
+      <Form.Group controlId="localSelecionado" className="dropdownLocal">
         <Form.Label>Selecione uma localidade existente</Form.Label>
         <Dropdown>
           <Dropdown.Toggle variant="light" id="dropdown-basic">
@@ -69,15 +69,13 @@ const AtualizarLocal = () => {
         <Form.Control.Feedback type="invalid">
           Selecione uma localidade existente.
         </Form.Control.Feedback>
-
-        <Form onSubmit={handleSubmit}>
-            <Button variant="success" type="submit" id="enviar">
-            Enviar
-            </Button>
-        </Form>
-
       </Form.Group>
 
+      <div className="d-flex justify-content-center mt-3">
+        <Button variant="success" type="submit" id="enviar">
+          Enviar
+        </Button>
+      </div>
     </Form>
   );
 };
