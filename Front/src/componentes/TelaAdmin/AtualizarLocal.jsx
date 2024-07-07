@@ -32,7 +32,7 @@ const AtualizarLocal = () => {
       }, { abortEarly: false });
 
       // Exibir toast de sucesso
-      toast.success('Local inserido com sucesso!', {
+      toast.success('Local atualizado com sucesso!', {
         position: "top-right",
         autoClose: 3000,
         hideProgressBar: false,
@@ -65,28 +65,26 @@ const AtualizarLocal = () => {
   };
 
   return (
-    
     <Form noValidate validated={validated} onSubmit={handleSubmit}>
-        <Form.Group as={Col} controlId="localSelecionado">
-            <Form.Label>Selecione uma localidade existente</Form.Label>
-            <Dropdown>
-            <Dropdown.Toggle variant="light" id="dropdown-basic">
-                {selectedLocal ? selectedLocal : 'Escolha uma localidade'}
-            </Dropdown.Toggle>
+      <Form.Group as={Col} controlId="localSelecionado" className="dropdownLocal">
+        <Form.Label>Selecione uma localidade existente</Form.Label>
+        <Dropdown>
+          <Dropdown.Toggle variant="light" id="dropdown-basic" className="botaoDrop">
+            {selectedLocal ? selectedLocal : 'Escolha uma localidade'}
+          </Dropdown.Toggle>
 
-            <Dropdown.Menu>
-                <Dropdown.Item onSelect={() => handleLocalSelect('Local 1')}>Local 1</Dropdown.Item>
-                <Dropdown.Item onSelect={() => handleLocalSelect('Local 2')}>Local 2</Dropdown.Item>
-                <Dropdown.Item onSelect={() => handleLocalSelect('Local 3')}>Local 3</Dropdown.Item>
-                {/* Adicione mais itens conforme necessário */}
-            </Dropdown.Menu>
-            </Dropdown>
-            <Form.Control.Feedback type="invalid">
-            Selecione uma localidade existente.
-            </Form.Control.Feedback>
-        </Form.Group>
+          <Dropdown.Menu>
+            <Dropdown.Item onClick={() => handleLocalSelect('Local 1')}>Local 1</Dropdown.Item>
+            <Dropdown.Item onClick={() => handleLocalSelect('Local 2')}>Local 2</Dropdown.Item>
+            <Dropdown.Item onClick={() => handleLocalSelect('Local 3')}>Local 3</Dropdown.Item>
+          </Dropdown.Menu>
+        </Dropdown>
+        <Form.Control.Feedback type="invalid">
+          Selecione uma localidade existente.
+        </Form.Control.Feedback>
+      </Form.Group>
 
-      <Form.Group as={Col} controlId="NomeLocal">
+      <Form.Group as={Col} controlId="NomeLocal" className="mb-3">
         <Form.Label>Nome do Local</Form.Label>
         <Form.Control type="text" name="NomeLocal" required />
         <Form.Control.Feedback type="invalid">
@@ -130,9 +128,11 @@ const AtualizarLocal = () => {
         </Form.Group>
       </Row>
 
-      <Button variant="success" type="submit">
-        Atualizar local
-      </Button>
+      <div className="d-flex justify-content-center mt-3">
+        <Button variant="success" type="submit">
+          Atualizar local
+        </Button>
+      </div>
     </Form>
   );
 };
