@@ -8,14 +8,30 @@ const localidadeRouter = express.Router();
 const fs = require('fs');
 const path = require('path');
 
-// //Validação do token
-// const jwt = require('jsonwebtoken');
+// importa a funcao isAdmin para bloquear algumas rotas ao cliente comum
+const { isAdmin } = require('./../middlewares/isAdmin');
+
 
 //Conexao com banco de dados
 const bdPath = path.join(__dirname,'..','db','localidades.json');
 const localidades = JSON.parse(fs.readFileSync(bdPath, {encoding: 'utf-8'}));
 
-localidadeRouter.post('/', (req, res) => {
+// a rota get retorna todas as localidades com passagens disponiveis
+localidadeRouter.get('/', (req, res) => {
+
+    const locais = []
+
+    for(let local of localidades){
+        if (local.passagens != 0){
+            locais.push(local)
+        }
+    }
+
+    res.status(200).send(locais)
+})
+
+// a rota post adiciona uma nova localidade
+localidadeRouter.post('/', isAdmin, (req, res) => {
 
     const {nome, latitude, longitude, passagens} = req.body
 
@@ -36,11 +52,12 @@ localidadeRouter.post('/', (req, res) => {
 
     fs.writeFileSync(bdPath, JSON.stringify(localidades, null ,2))
 
-    res.status(200).send("OK")
+    res.status(200).send(novoLocal)
 
 })
 
-localidadeRouter.put('/', (req, res) => {
+// a rota put atualiza alguma localidade
+localidadeRouter.put('/', isAdmin, (req, res) => {
 
     const {id, nome, latitude, longitude, passagens, imgs} = req.body
 
@@ -64,14 +81,19 @@ localidadeRouter.put('/', (req, res) => {
 
     fs.writeFileSync(bdPath, JSON.stringify(localidades,null,2));
 
-    res.status(200).send('Localidade Atualizada!');
+    res.status(200).send(novoLocal);
 
 })
 
-localidadeRouter.delete('/:id', (req, res) => {
+// a rota delete apaga uma localidade ao se passar um id
+localidadeRouter.delete('/:id', isAdmin, (req, res) => {
 
     const {id} = req.params
+    console.log(id)
 
+    const acharIndex = (p) => {
+        return p.id === Number(id)
+    }
 
     const index = localidades.findIndex(acharIndex);
 
@@ -79,7 +101,7 @@ localidadeRouter.delete('/:id', (req, res) => {
 
     fs.writeFileSync(bdPath, JSON.stringify(localidades,null,2));
 
-    res.status(200).send('Localidade Removida!');
+    res.status(204).send('Localidade Removida!');
 });
 
 
@@ -87,20 +109,5 @@ localidadeRouter.delete('/:id', (req, res) => {
 
 
 
-// function autenticarToken(req,res,next){
-//     const authH = req.headers['authorization'];
-//     const token = authH && authH.split(' ')[1];
-//     if(token === null) return res.status(401).send('Token não encontrado');
-    
-//     //verificando o token
-//     try {
-//         const user = jwt.verify(token, process.env.TOKEN);
-//         req.user = user;
-//         next(); //Se token é válido, avança chamando next()
-//     } catch (error) {
-//         res.status(403).send('Token inválido');
-//     }
-   
-// }
 
 module.exports =  { localidadeRouter }

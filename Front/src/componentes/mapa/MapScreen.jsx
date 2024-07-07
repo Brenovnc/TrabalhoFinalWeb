@@ -15,7 +15,7 @@ function MapScreen() {
         <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
         <p>Valor da passagem: R$ 100,00 </p>
         <Button variant="light">Comprar Passagem</Button><br/>
-        <Button variant="light">...</Button>
+        <Button variant="light">Voltar</Button>
       </Popover.Body>
     </Popover>
   );
