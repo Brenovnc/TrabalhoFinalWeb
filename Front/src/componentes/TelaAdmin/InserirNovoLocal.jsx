@@ -20,6 +20,7 @@ const InserirNovoLocal = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     const form = event.currentTarget;
+    const token = sessionStorage.getItem('token');
 
     try {
       // Validação do formulário usando o schema definido
@@ -46,7 +47,11 @@ const InserirNovoLocal = () => {
       console.log("qtdPassagens: ", qtdPassagens.value)
 
       // Envio dos dados para o backend usando Axios
-      const response = await axios.post('http://localhost:3000/api/localidades', data);
+      const response = await axios.post('http://localhost:3000/api/localidades', data, {
+        headers: {
+          Authorization: `Bearer ${token}` // Envia o token no cabeçalho da requisição
+        }
+      });
       
       if (response.status === 200) {
         // Exibição de mensagem de sucesso com Toastify

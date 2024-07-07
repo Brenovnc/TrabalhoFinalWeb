@@ -24,13 +24,20 @@ const RemoverLocal = () => {
   }, []);
 
   const handleRemove = async () => {
+    const token = sessionStorage.getItem('token');
+
     if (!selectedLocalidade) {
       toast.error('Por favor, selecione uma localidade para remover.');
       return;
     }
 
     try {
-      await axios.delete(`http://localhost:3000/api/localidades/${selectedLocalidade}`);
+      await axios.delete(`http://localhost:3000/api/localidades/${selectedLocalidade}`,  {
+        headers: {
+          Authorization: `Bearer ${token}` // Envia o token no cabeçalho da requisição
+        }
+      });
+      
       toast.success('Localidade removida com sucesso!', {
         position: "top-right",
         autoClose: 3000,

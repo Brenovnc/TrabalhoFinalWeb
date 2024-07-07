@@ -1,20 +1,63 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button, Col, Container, Image, Nav, Navbar, Row } from 'react-bootstrap';
 import { FaLock } from 'react-icons/fa';
+import axios from 'axios';
 
 // Placeholder image URL
 const placeholderImg = 'https://via.placeholder.com/150';
 
 const PerfilUsuario = () => {
-  // Simulação de dados do usuário e passagens compradas
-  const usuario = {
-    nome: 'Nome do Usuário', // Example user with no photo
-    passagens: [
-      { id: 1, origem: 'Origem 1', destino: 'Destino 1', data: '01/01/2024' },
-      { id: 2, origem: 'Origem 2', destino: 'Destino 2', data: '02/02/2024' },
-      { id: 3, origem: 'Origem 3', destino: 'Destino 3', data: '03/03/2024' },
-    ]
+  const [usuario, setUsuario] = useState({ nome: 'Nome do Usuário', passagens: [] });
+
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    const formattedDate = date.toLocaleString('pt-BR', {
+      day: '2-digit',
+      month: '2-digit',
+      year: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit',
+      second: '2-digit',
+    });
+    return formattedDate;
   };
+
+  const handleExcluirPassagem = async (passagemId) => {
+    try {
+      const token = sessionStorage.getItem('token'); // Assumindo que o token está no sessionStorage
+      await axios.delete(`http://localhost:3000/api/passagens/${passagemId}`, {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      });
+
+      // Atualiza localmente as passagens do usuário após a exclusão
+      const updatedPassagens = usuario.passagens.filter(passagem => passagem.id !== passagemId);
+      setUsuario(prevUsuario => ({ ...prevUsuario, passagens: updatedPassagens }));
+    } catch (error) {
+      console.error('Erro ao excluir passagem:', error);
+    }
+  };
+
+  useEffect(() => {
+    const fetchUserData = async () => {
+      try {
+        const token = sessionStorage.getItem('token'); // Assumindo que o token está no sessionStorage
+        const response = await axios.get('http://localhost:3000/api/passagens', {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        });
+
+        const tickets = response.data;
+        setUsuario(prevUsuario => ({ ...prevUsuario, passagens: tickets }));
+      } catch (error) {
+        console.error('Erro ao buscar passagens do usuário:', error);
+      }
+    };
+
+    fetchUserData();
+  }, []);
 
   return (
     <>
@@ -65,10 +108,10 @@ const PerfilUsuario = () => {
                 {usuario.passagens.map(passagem => (
                   <li key={passagem.id} className="list-group-item d-flex justify-content-between align-items-center">
                     <div>
-                      <h6 className="mb-0">{passagem.origem} - {passagem.destino}</h6>
-                      <small className="text-muted">{passagem.data}</small>
+                      <h6 className="mb-0">{passagem.location}</h6>
+                      <small className="text-muted">{`Comprada em ${formatDate(passagem.date)}`}</small>
                     </div>
-                    <Button variant="outline-info">Detalhes</Button>
+                    <Button variant="outline-danger" onClick={() => handleExcluirPassagem(passagem.id)}>Excluir Compra Efetuada</Button>
                   </li>
                 ))}
               </ul>
