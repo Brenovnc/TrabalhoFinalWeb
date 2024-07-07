@@ -9,24 +9,28 @@ const ticketsCadastrados = JSON.parse(fs.readFileSync(bdTickets, {encoding: 'utf
 const bdUsers = path.join(__dirname,'..', '..', 'db','banco-dados-usuario.json');
 const usuariosCadastrados = JSON.parse(fs.readFileSync(bdUsers, {encoding: 'utf-8'}));
 
+const bdLocalidades = path.join(__dirname,'..', '..', 'db','localidades.json');
+const localidadesCadastradas = JSON.parse(fs.readFileSync(bdLocalidades, {encoding: 'utf-8'}));
+
 const Ticket = require('../../models/Ticket');
 
 const ticketRouter = express.Router();
 
 //rota que cria uma compra de passagem
 ticketRouter.post('/', isUser, (req, res) => {
-  const {location, price, travelDate} = req.body
+  const {location, price} = req.body
   const user = req.user
   const date = new Date();
 
   const ids = [];
+  
+  const localidade = localidadesCadastradas.find(loc => loc.nome === location);
+  
+  if (!localidade || localidade.passagens <= 0) {
+    return res.status(400).json({ error: 'Passagens esgotadas para esta localidade.' });
+  }
 
   for(let ticket of ticketsCadastrados){
-    if(ticket.userId == user.id){
-      if(ticket.travelDate == travelDate && ticket.valid && ticket.location == location){
-        throw new Error('Você possui outra viagem para este lugar, nesta mesma data!')
-      }
-    }
     ids.push(ticket.id);
   }
 
@@ -42,7 +46,6 @@ ticketRouter.post('/', isUser, (req, res) => {
     location,
     price,
     user.id,
-    travelDate,
     date,
     true,
   )
@@ -53,8 +56,12 @@ ticketRouter.post('/', isUser, (req, res) => {
       passageiro.tickets.push(newTicket.id);
     }
   }
+
+  localidade.passagens -= 1;
+
   fs.writeFileSync(bdUsers, JSON.stringify(usuariosCadastrados, null, 2))
   fs.writeFileSync(bdTickets, JSON.stringify(ticketsCadastrados, null, 2))
+  fs.writeFileSync(bdLocalidades, JSON.stringify(localidadesCadastradas, null, 2));
   return res.status(201).json(`Passagem cadastrada com sucesso!`);
 });
 
@@ -112,6 +119,13 @@ ticketRouter.delete('/:id', isUser, (req, res) => {
     }
   }
   
+  const localidade = localidadesCadastradas.find(loc => loc.nome === ticketRemovido.location);
+
+  if (localidade) {
+    localidade.passagens += 1;
+  }
+
+  fs.writeFileSync(bdLocalidades, JSON.stringify(localidadesCadastradas, null, 2));
   fs.writeFileSync(bdTickets, JSON.stringify(ticketsCadastrados, null, 2));
   fs.writeFileSync(bdUsers, JSON.stringify(usuariosCadastrados, null, 2));
 
