@@ -93,24 +93,3 @@ export default function LoginUser() {
   );
 }
 
-
-
-
-// return (
-//     <>  
-//         <h2>Entre e planeje sua viagem</h2>
-//         <form onSubmit={handleSubmit(submit)} noValidate>
-            
-//             {/* Cria diretamente um label, um input e uma mensagem de erro que recebe o erro emitido pelo yup*/}
-//             <InputField id="email" type="text" label="Email" register={register('email')} error={errors.email}/>
-//             {/* <InputField id="password" type="password" label="Senha" register={register('password')} error={errors.password}/> */}
-//             <button>Entrar</button>
-
-//         </form>
-//         <p className="server-response">{msg}</p>
-//         <div className="realizar-cadastro">
-//             <p id='text-nPossuiConta'>Não possui conta?</p>
-//             <Link to="/criar-user" id='text-cadastro'>Cadastro</Link>
-//         </div>
-//     </>
-// )
