@@ -25,6 +25,7 @@ ticketRouter.post('/', isUser, (req, res) => {
   const ids = [];
   
   const localidade = localidadesCadastradas.find(loc => loc.nome === location);
+  
   if (!localidade || localidade.passagens <= 0) {
     return res.status(400).json({ error: 'Passagens esgotadas para esta localidade.' });
   }
@@ -65,7 +66,7 @@ ticketRouter.post('/', isUser, (req, res) => {
 });
 
 //rota que trás uma passagem específica do user autenticado
-ticketRouter.get('/:id', isUser, (req, res) => {
+ticketRouter.get('/:id', (req, res) => {
   const ticketId = req.params.id;
   const { id } = req.user
 
@@ -119,6 +120,7 @@ ticketRouter.delete('/:id', isUser, (req, res) => {
   }
   
   const localidade = localidadesCadastradas.find(loc => loc.nome === ticketRemovido.location);
+
   if (localidade) {
     localidade.passagens += 1;
   }
