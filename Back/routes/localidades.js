@@ -31,7 +31,7 @@ localidadeRouter.get('/', (req, res) => {
 })
 
 // a rota post adiciona uma nova localidade
-localidadeRouter.post('/', isAdmin, (req, res) => {
+localidadeRouter.post('/', (req, res) => {
 
     const {nome, latitude, longitude, passagens} = req.body
     const lat = Number(latitude)
