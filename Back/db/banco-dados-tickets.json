@@ -1,10 +1,50 @@
 [
   {
     "id": 0,
-    "location": "Alemanha",
-    "price": 2001,
+    "location": "Austria",
+    "price": 200,
     "userId": 1,
-    "date": "2024-07-07T16:17:33.377Z",
+    "date": "2024-07-07T20:33:31.207Z",
+    "valid": true
+  },
+  {
+    "id": 1,
+    "location": "Austria",
+    "price": 200,
+    "userId": 1,
+    "date": "2024-07-07T20:34:12.311Z",
+    "valid": true
+  },
+  {
+    "id": 2,
+    "location": "Austria",
+    "price": 200,
+    "userId": 1,
+    "date": "2024-07-07T20:34:18.837Z",
+    "valid": true
+  },
+  {
+    "id": 3,
+    "location": "Alemanha",
+    "price": 200,
+    "userId": 1,
+    "date": "2024-07-07T20:34:21.049Z",
+    "valid": true
+  },
+  {
+    "id": 4,
+    "location": "Austria",
+    "price": 200,
+    "userId": 1,
+    "date": "2024-07-07T20:34:21.696Z",
+    "valid": true
+  },
+  {
+    "id": 5,
+    "location": "Austria",
+    "price": 200,
+    "userId": 1,
+    "date": "2024-07-07T20:35:55.165Z",
     "valid": true
   }
 ]

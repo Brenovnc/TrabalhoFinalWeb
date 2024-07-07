@@ -39,7 +39,12 @@ localidadeRouter.post('/', isAdmin, (req, res) => {
     const precNum = parseFloat(precoPassagem); 
     const passNum = parseInt(passagens, 10); 
 
-    const id = localidades[localidades.length - 1].id + 1;
+    let id;
+    if(localidades.length > 0){
+        id = localidades[localidades.length - 1].id + 1;
+    }else{
+        id = 0;
+    }
 
     const imgs = [];
 

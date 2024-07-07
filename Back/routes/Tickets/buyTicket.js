@@ -25,6 +25,7 @@ ticketRouter.post('/', isUser, (req, res) => {
   const ids = [];
   
   const localidade = localidadesCadastradas.find(loc => loc.nome === location);
+  
   if (!localidade || localidade.passagens <= 0) {
     return res.status(400).json({ error: 'Passagens esgotadas para esta localidade.' });
   }
@@ -119,6 +120,7 @@ ticketRouter.delete('/:id', isUser, (req, res) => {
   }
   
   const localidade = localidadesCadastradas.find(loc => loc.nome === ticketRemovido.location);
+
   if (localidade) {
     localidade.passagens += 1;
   }

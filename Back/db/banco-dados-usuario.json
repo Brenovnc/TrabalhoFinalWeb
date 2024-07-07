@@ -1,35 +1,33 @@
 [
   {
     "id": 0,
-    "username": "breno",
+    "username": "ryan",
     "role": "admin",
-    "email": "breno@breno",
-    "password": "$2b$10$IcFQ4BQs6bGb6dpvdsamsuE7vJ68qGRg5jbgEOBRDrygRTjeZz35a",
+    "email": "ryan@gmail.com",
+    "password": "$2b$10$F.xN5kldQJGQyCy.Igbgte51KNp.zodTVGIANbTVRT56If5WosQZ.",
     "tickets": []
   },
   {
-    "id": 2,
-    "username": "Pedroca",
-    "role": "user",
-    "email": "p@gmail.com",
-    "password": "$2b$10$8ZbMoOTHwAl8dVcJ1tBj2uMmMCEF7P3TXtloTIKqrpQeFusSwZy6y",
-    "tickets": []
-  },
-  {
+    "id": 1,
     "username": "ryan",
     "role": "user",
-    "email": "ryan@gmail.com",
-    "password": "$2b$10$VyYJgv4ab0e6ZGu0WBmKleQ0ta55BTecdwtPDmXeFMjwAx6a8U08O",
+    "email": "ryan1@gmail.com",
+    "password": "$2b$10$fPX.YV6uZ2S611.k3maeHOVfbGDtjQxa4Wf4taYvGcpoIPjWmoaiC",
     "tickets": [
-      0
+      0,
+      1,
+      2,
+      3,
+      4,
+      5
     ]
   },
   {
-    "id": 3,
-    "username": "pedroca",
+    "id": 2,
+    "username": "ryan",
     "role": "user",
-    "email": "p@gmail.com",
-    "password": "$2b$10$DdrkLkjdYtS3d13sxGn.8uWFmV04cPb48fdIsokMVHXeH4MPzk94i",
+    "email": "ryan2@gmail.com",
+    "password": "$2b$10$wM5qinKgq9RqUyRUQLG3oOVwaZb1zZgFddno95/fSksUgavs6RPW6",
     "tickets": []
   }
 ]
