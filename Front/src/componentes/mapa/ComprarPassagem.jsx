@@ -21,15 +21,13 @@ function ComprarPassagem() {
                             <Nav.Link href="/admin" className="link-with-icon">
                             <FaLock className='cadeado'/> Admin
                             </Nav.Link>
-                            <NavDropdown title="Outras funções" id="basic-nav-dropdown">
-                                <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-                                <NavDropdown.Item href="#action/3.2">
-                                    Another action
-                                </NavDropdown.Item>
-                                <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
+                            <NavDropdown title="Admin" id="basic-nav-dropdown">
+                                <NavDropdown.Item href="#action/3.1">Inserir novo local</NavDropdown.Item>
+                                <NavDropdown.Item href="#action/3.2">Atualizar local existente</NavDropdown.Item>
+                                <NavDropdown.Item href="#action/3.3">Remover local existente</NavDropdown.Item>
                                 <NavDropdown.Divider />
                                 <NavDropdown.Item href="#action/3.4">
-                                    Separated link
+                                    Link separado
                                 </NavDropdown.Item>
                             </NavDropdown>
                         </Nav>
