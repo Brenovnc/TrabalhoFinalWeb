@@ -33,9 +33,10 @@ localidadeRouter.get('/', (req, res) => {
 // a rota post adiciona uma nova localidade
 localidadeRouter.post('/', (req, res) => {
 
-    const {nome, latitude, longitude, passagens} = req.body
+    const {nome, latitude, longitude, preco, passagens} = req.body
     const lat = Number(latitude)
     const long = Number(longitude)
+    const prec = Number(preco)
     
 
     const id = localidades[localidades.length-1].id + 1
@@ -47,7 +48,7 @@ localidadeRouter.post('/', (req, res) => {
         nome,
         lat,
         long,
-        preco,
+        prec,
         passagens,
         imgs
     }
@@ -63,20 +64,25 @@ localidadeRouter.post('/', (req, res) => {
 // a rota put atualiza alguma localidade
 localidadeRouter.put('/', isAdmin, (req, res) => {
 
-    const {id, nome, latitude, longitude, passagens, imgs} = req.body
+    const {nome, latitude, longitude, preco, passagens} = req.body
     const lat = Number(latitude)
     const long = Number(longitude)
+    const prec = Number(preco)
+    
+
+    const id = localidades[localidades.length-1].id + 1
+
+    const imgs = []
 
     const novoLocal = {
         id,
         nome,
         lat,
         long,
-        preco,
+        prec,
         passagens,
         imgs
     }
-
 
     const acharIndex = (p) => {
         return p.id === Number(id)
