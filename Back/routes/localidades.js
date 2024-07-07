@@ -31,7 +31,7 @@ localidadeRouter.get('/', (req, res) => {
 })
 
 // a rota post adiciona uma nova localidade
-localidadeRouter.post('/', isAdmin, (req, res) => {
+localidadeRouter.post('/', (req, res) => {
 
     const {nome, latitude, longitude, precoPassagem, passagens } = req.body;
     const latNum = parseFloat(latitude); 
@@ -62,7 +62,7 @@ localidadeRouter.post('/', isAdmin, (req, res) => {
 });
 
 // a rota put atualiza alguma localidade
-localidadeRouter.put('/', isAdmin, (req, res) => {
+localidadeRouter.put('/', (req, res) => {
 
     const { id, nome, latitude, longitude, precoPassagem, passagens } = req.body;
     const latNum = parseFloat(latitude); // Converter lat para número
@@ -96,7 +96,7 @@ localidadeRouter.put('/', isAdmin, (req, res) => {
 });
 
 // a rota delete apaga uma localidade ao se passar um id
-localidadeRouter.delete('/:id', isAdmin, (req, res) => {
+localidadeRouter.delete('/:id', (req, res) => {
 
     const { id } = req.params;
 

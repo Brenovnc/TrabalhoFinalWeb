@@ -1,20 +1,32 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button, Col, Container, Image, Nav, Navbar, Row } from 'react-bootstrap';
 import { FaLock } from 'react-icons/fa';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 // Placeholder image URL
 const placeholderImg = 'https://via.placeholder.com/150';
 
 const PerfilUsuario = () => {
-  // Simulação de dados do usuário e passagens compradas
-  const usuario = {
-    nome: 'Nome do Usuário', // Example user with no photo
-    passagens: [
-      { id: 1, origem: 'Origem 1', destino: 'Destino 1', data: '01/01/2024' },
-      { id: 2, origem: 'Origem 2', destino: 'Destino 2', data: '02/02/2024' },
-      { id: 3, origem: 'Origem 3', destino: 'Destino 3', data: '03/03/2024' },
-    ]
-  };
+  const [usuario, setUsuario] = useState(null);
+  const [passagens, setPassagens] = useState([]);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const fetchUserData = async () => {
+      try {
+        const userResponse = await axios.get('http://localhost:3000/api/user/profile');
+        setUsuario(userResponse.data);
+
+        const ticketsResponse = await axios.get('http://localhost:3000/api/tickets');
+        setPassagens(ticketsResponse.data);
+      } catch (error) {
+        console.error('Error fetching user data or tickets:', error);
+      }
+    };
+
+    fetchUserData();
+  }, []);
 
   return (
     <>
@@ -34,47 +46,56 @@ const PerfilUsuario = () => {
           </Navbar.Collapse>
           <Navbar.Collapse className="justify-content-end">
             <Navbar.Text>
-              <Button variant="danger text-light" href='/'>Sair</Button>
-              {/* <a href="/">Nome do usuário</a> */}
+              <Button variant="danger text-light" onClick={() => navigate('/')}>Sair</Button>
             </Navbar.Text>
           </Navbar.Collapse>
         </Container>
       </Navbar>
 
       <div className="container mt-4">
-        <Row>
-          <Col xs={12} md={4} className="mb-4 d-flex justify-content-center align-items-center">
-            <div className="bg-white p-3 rounded shadow text-center">
-              <h2 className="h5 mb-4">Perfil do Usuário</h2>
-              <Image
-                src={usuario.nome ? `https://via.placeholder.com/150` : placeholderImg}
-                roundedCircle
-                fluid
-                className="mb-3"
-              />
-              <h4 className="h6 mb-3">{usuario.nome}</h4>
-              <p className="text-muted mb-3">Detalhes aleatórios do usuário</p>
-              <Button variant="outline-primary" className="me-2">Editar Perfil</Button>
-              <Button variant="outline-danger">Excluir Conta</Button>
-            </div>
-          </Col>
-          <Col xs={12} md={8}>
-            <div className="bg-white p-3 rounded shadow">
-              <h2 className="h5 mb-4">Passagens Compradas</h2>
-              <ul className="list-group">
-                {usuario.passagens.map(passagem => (
-                  <li key={passagem.id} className="list-group-item d-flex justify-content-between align-items-center">
-                    <div>
-                      <h6 className="mb-0">{passagem.origem} - {passagem.destino}</h6>
-                      <small className="text-muted">{passagem.data}</small>
-                    </div>
-                    <Button variant="outline-info">Detalhes</Button>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </Col>
-        </Row>
+        {usuario ? (
+          <Row>
+            <Col xs={12} md={4} className="mb-4 d-flex justify-content-center align-items-center">
+              <div className="bg-white p-3 rounded shadow text-center">
+                <h2 className="h5 mb-4">Perfil do Usuário</h2>
+                <Image
+                  src={usuario.foto ? usuario.foto : placeholderImg}
+                  roundedCircle
+                  fluid
+                  className="mb-3"
+                />
+                <h4 className="h6 mb-3">{usuario.nome}</h4>
+                <p className="text-muted mb-3">Detalhes aleatórios do usuário</p>
+                <Button variant="outline-primary" className="me-2">Editar Perfil</Button>
+                <Button variant="outline-danger">Excluir Conta</Button>
+              </div>
+            </Col>
+            <Col xs={12} md={8}>
+              <div className="bg-white p-3 rounded shadow">
+                <h2 className="h5 mb-4">Passagens Compradas</h2>
+                <ul className="list-group">
+                  {passagens.length > 0 ? (
+                    passagens.map(passagem => (
+                      <li key={passagem.id} className="list-group-item d-flex justify-content-between align-items-center">
+                        <div>
+                          <h6 className="mb-0">{passagem.origem} - {passagem.destino}</h6>
+                          <small className="text-muted">{passagem.data}</small>
+                        </div>
+                        <Button variant="outline-info">Detalhes</Button>
+                      </li>
+                    ))
+                  ) : (
+                    <li className="list-group-item text-center">Nenhuma passagem comprada</li>
+                  )}
+                </ul>
+              </div>
+            </Col>
+          </Row>
+        ) : (
+          <div className="text-center mt-5">
+            <p>Carregando dados do usuário...</p>
+          </div>
+        )}
       </div>
 
       <footer className="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 mb-0 mt-2 border-top h-50 bg">

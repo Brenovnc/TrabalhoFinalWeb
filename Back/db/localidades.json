@@ -5,7 +5,7 @@
     "latitude": -22.412742961670933,
     "longitude": -45.44970030988119,
     "precoPassagem": 222,
-    "passagens": 10,
+    "passagens": 6,
     "imgs": []
   },
   {
@@ -15,6 +15,15 @@
     "longitude": 10.4515,
     "precoPassagem": 1000,
     "passagens": 332,
+    "imgs": []
+  },
+  {
+    "id": 3,
+    "nome": "Agua",
+    "latitude": -26.81028131691599,
+    "longitude": -20.93578593050772,
+    "precoPassagem": 30,
+    "passagens": 10,
     "imgs": []
   }
 ]

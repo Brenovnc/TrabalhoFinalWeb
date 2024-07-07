@@ -47,5 +47,13 @@
     "email": "imposs@gmail.com",
     "password": "$2b$10$wvfKYRJW4mMWaXp6PL86UehpIAmVg867uKHDS.XstFbcrlubBVR7a",
     "tickets": []
+  },
+  {
+    "id": null,
+    "username": "breno2",
+    "role": "user",
+    "email": "breno@breno2",
+    "password": "$2b$10$koHX3Reda13jxrGSk6Ea0OjZ/Ez3f9kHtKbFFfeVEZMujenUoluG.",
+    "tickets": []
   }
 ]
