@@ -34,6 +34,9 @@ localidadeRouter.get('/', (req, res) => {
 localidadeRouter.post('/', isAdmin, (req, res) => {
 
     const {nome, latitude, longitude, passagens} = req.body
+    const lat = Number(latitude)
+    const long = Number(longitude)
+    
 
     const id = localidades[localidades.length-1].id + 1
 
@@ -42,8 +45,8 @@ localidadeRouter.post('/', isAdmin, (req, res) => {
     const novoLocal = {
         id,
         nome,
-        latitude,
-        longitude,
+        lat,
+        long,
         preco,
         passagens,
         imgs
@@ -61,12 +64,14 @@ localidadeRouter.post('/', isAdmin, (req, res) => {
 localidadeRouter.put('/', isAdmin, (req, res) => {
 
     const {id, nome, latitude, longitude, passagens, imgs} = req.body
+    const lat = Number(latitude)
+    const long = Number(longitude)
 
     const novoLocal = {
         id,
         nome,
-        latitude,
-        longitude,
+        lat,
+        long,
         preco,
         passagens,
         imgs
