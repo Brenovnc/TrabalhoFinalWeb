@@ -13,6 +13,7 @@ const Ticket = require('../../models/Ticket');
 
 const ticketRouter = express.Router();
 
+//rota que cria uma compra de passagem
 ticketRouter.post('/', isUser, (req, res) => {
   const {location, price, travelDate} = req.body
   const user = req.user
@@ -57,6 +58,7 @@ ticketRouter.post('/', isUser, (req, res) => {
   return res.status(201).json(`Passagem cadastrada com sucesso!`);
 });
 
+//rota que trás uma passagem específica do user autenticado
 ticketRouter.get('/:id', isUser, (req, res) => {
   const ticketId = req.params.id;
   const { id } = req.user
@@ -73,6 +75,7 @@ ticketRouter.get('/:id', isUser, (req, res) => {
   return res.status(200).json(tickets);
 });
 
+//rota que trás todas as passagens do user autenticado
 ticketRouter.get('/', isUser, (req, res) => {
   const { id } = req.user
 
@@ -85,6 +88,35 @@ ticketRouter.get('/', isUser, (req, res) => {
 
   return res.status(200).json(tickets);
 });
+
+//rota que deleta uma passagem
+ticketRouter.delete('/:id', isUser, (req, res) => {
+  
+  const {id} = req.params
+
+  const acharIndex = (p) => {
+      return p.id === Number(id)
+  }
+
+  const index = ticketsCadastrados.findIndex(acharIndex);
+
+  const [ticketRemovido] = ticketsCadastrados.splice(index, 1);
+  
+  for (const passageiro of usuariosCadastrados) {
+    if (passageiro.id === ticketRemovido.userId) {
+      const ticketIndex = passageiro.tickets.indexOf(Number(id));
+      if (ticketIndex !== -1) {
+        passageiro.tickets.splice(ticketIndex, 1);
+      }
+      break;
+    }
+  }
+  
+  fs.writeFileSync(bdTickets, JSON.stringify(ticketsCadastrados, null, 2));
+  fs.writeFileSync(bdUsers, JSON.stringify(usuariosCadastrados, null, 2));
+
+  res.status(204).send('Passagem cancelada!');
+})
 
 
 

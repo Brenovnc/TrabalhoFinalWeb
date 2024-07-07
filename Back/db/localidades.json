@@ -1,10 +1,10 @@
 [
-    {
-        "id": 1,
-        "nome": "UNIFEI",
-        "latitude": -22.412742961670933,
-        "longitude": -45.44970030988119,
-        "passagens": 5,
-        "imgs": [] 
-    }
+  {
+    "id": 1,
+    "nome": "UNIFEI",
+    "latitude": -22.412742961670933,
+    "longitude": -45.44970030988119,
+    "passagens": 5,
+    "imgs": []
+  }
 ]
