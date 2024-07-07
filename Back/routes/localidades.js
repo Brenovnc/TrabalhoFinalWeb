@@ -31,9 +31,10 @@ localidadeRouter.get('/', (req, res) => {
 })
 
 // a rota post adiciona uma nova localidade
-localidadeRouter.post('/', isAdmin, (req, res) => {
+localidadeRouter.post('/', (req, res) => {
 
-    const {nome, latitude, longitude, passagens} = req.body
+    const {nome, latitude, longitude, preco, passagens} = req.body
+    console.log("oi",nome, latitude)
 
     const id = localidades[localidades.length-1].id + 1
 
@@ -60,7 +61,7 @@ localidadeRouter.post('/', isAdmin, (req, res) => {
 // a rota put atualiza alguma localidade
 localidadeRouter.put('/', isAdmin, (req, res) => {
 
-    const {id, nome, latitude, longitude, passagens, imgs} = req.body
+    const {id, nome, latitude, longitude, preco, passagens, imgs} = req.body
 
     const novoLocal = {
         id,
