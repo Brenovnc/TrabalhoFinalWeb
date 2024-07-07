@@ -9,13 +9,6 @@
   },
   {
     "id": 2,
-<<<<<<< HEAD
-    "username": "Pedroca",
-    "role": "user",
-    "email": "p@gmail.com",
-    "password": "$2b$10$8ZbMoOTHwAl8dVcJ1tBj2uMmMCEF7P3TXtloTIKqrpQeFusSwZy6y",
-    "tickets": []
-=======
     "username": "ryan",
     "role": "user",
     "email": "ryan@gmail.com",
@@ -23,6 +16,5 @@
     "tickets": [
       0
     ]
->>>>>>> 82b6e59413260384a094f53fb75fe3a83efda87c
   }
 ]
