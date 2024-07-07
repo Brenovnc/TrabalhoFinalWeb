@@ -16,5 +16,13 @@
     "tickets": [
       0
     ]
+  },
+  {
+    "id": 3,
+    "username": "pedroca",
+    "role": "user",
+    "email": "p@gmail.com",
+    "password": "$2b$10$DdrkLkjdYtS3d13sxGn.8uWFmV04cPb48fdIsokMVHXeH4MPzk94i",
+    "tickets": []
   }
 ]
