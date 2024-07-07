@@ -6,5 +6,13 @@
     "email": "breno@breno",
     "password": "$2b$10$IcFQ4BQs6bGb6dpvdsamsuE7vJ68qGRg5jbgEOBRDrygRTjeZz35a",
     "tickets": []
+  },
+  {
+    "id": 1,
+    "username": "Pedroca",
+    "role": "user",
+    "email": "p@gmail.com",
+    "password": "$2b$10$8ZbMoOTHwAl8dVcJ1tBj2uMmMCEF7P3TXtloTIKqrpQeFusSwZy6y",
+    "tickets": []
   }
 ]
