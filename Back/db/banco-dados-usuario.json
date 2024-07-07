@@ -6,5 +6,15 @@
     "email": "breno@breno",
     "password": "$2b$10$IcFQ4BQs6bGb6dpvdsamsuE7vJ68qGRg5jbgEOBRDrygRTjeZz35a",
     "tickets": []
+  },
+  {
+    "id": 1,
+    "username": "ryan",
+    "role": "user",
+    "email": "ryan@gmail.com",
+    "password": "$2b$10$VyYJgv4ab0e6ZGu0WBmKleQ0ta55BTecdwtPDmXeFMjwAx6a8U08O",
+    "tickets": [
+      0
+    ]
   }
 ]
