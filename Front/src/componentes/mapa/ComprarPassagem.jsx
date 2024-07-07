@@ -22,6 +22,9 @@ function ComprarPassagem() {
                     <Navbar.Brand  className="text-light montserrat-bold" href="/home">Site de viagens</Navbar.Brand>
                     <Navbar.Collapse id="basic-navbar-nav">
                         <Nav className="me-auto ">
+                            <Nav.Link href="/perfil" className="link-with-icon text-light-green">
+                                Perfil
+                            </Nav.Link>
                             <Nav.Link href="/admin" className="link-with-icon text-light-green">
                             <FaLock className='cadeado text-light-green'/> Admin
                             </Nav.Link>
