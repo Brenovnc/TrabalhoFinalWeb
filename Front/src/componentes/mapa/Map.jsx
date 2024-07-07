@@ -47,9 +47,9 @@ const Map = ({ apikey }) => {
 
   const addMarkerToMap = (map, lat, lng, imageUrl) => {
     const icon = new H.map.Icon(imageUrl, { size: { w: 50, h: 50 } });
-    const coords = { lat, lng };
+    const coords = { lat: parseFloat(lat), lng: parseFloat(lng) }; // Convert to numbers
     const marker = new H.map.Marker(coords, { icon });
-
+  
     map.addObject(marker);
   };
 

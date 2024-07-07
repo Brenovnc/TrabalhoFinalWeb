@@ -33,94 +33,84 @@ localidadeRouter.get('/', (req, res) => {
 // a rota post adiciona uma nova localidade
 localidadeRouter.post('/', (req, res) => {
 
-    const {nome, latitude, longitude, preco, passagens} = req.body
-    const lat = Number(latitude)
-    const long = Number(longitude)
-    const prec = Number(preco)
-    
+    const {nome, latitude, longitude, precoPassagem, passagens } = req.body;
+    const latNum = parseFloat(latitude); // Converter lat para número
+    const longNum = parseFloat(longitude); // Converter long para número
+    const precNum = parseFloat(precoPassagem); // Converter prec para número
+    const passNum = parseInt(passagens, 10); // Converter passagens para número inteiro
 
-    const id = localidades[localidades.length-1].id + 1
+    const id = localidades[localidades.length - 1].id + 1;
 
-    const imgs = []
-
-    const novoLocal = {
-        id,
-        nome,
-        lat,
-        long,
-        prec,
-        passagens,
-        imgs
-    }
-
-    localidades.push(novoLocal)
-
-    fs.writeFileSync(bdPath, JSON.stringify(localidades, null ,2))
-
-    res.status(200).send(novoLocal)
-
-})
-
-// a rota put atualiza alguma localidade
-localidadeRouter.put('/', isAdmin, (req, res) => {
-
-    const {nome, latitude, longitude, preco, passagens} = req.body
-    const lat = Number(latitude)
-    const long = Number(longitude)
-    const prec = Number(preco)
-    
-
-    const id = localidades[localidades.length-1].id + 1
-
-    const imgs = []
+    const imgs = [];
 
     const novoLocal = {
         id,
         nome,
-        lat,
-        long,
-        prec,
-        passagens,
+        latitude: latNum,
+        longitude: longNum,
+        precoPassagem: precNum,
+        passagens: passNum,
         imgs
-    }
+    };
 
-    const acharIndex = (p) => {
-        return p.id === Number(id)
-    }
 
-    const index = localidades.findIndex(acharIndex);
+    localidades.push(novoLocal);
 
-    localidades.splice(index,1,novoLocal);
-
-    fs.writeFileSync(bdPath, JSON.stringify(localidades,null,2));
+    fs.writeFileSync(bdPath, JSON.stringify(localidades, null, 2));
 
     res.status(200).send(novoLocal);
+});
 
-})
+// a rota put atualiza alguma localidade
+localidadeRouter.put('/', (req, res) => {
 
-// a rota delete apaga uma localidade ao se passar um id
-localidadeRouter.delete('/:id', isAdmin, (req, res) => {
+    const { id, nome, latitude, longitude, precoPassagem, passagens } = req.body;
+    const latNum = parseFloat(latitude); // Converter lat para número
+    const longNum = parseFloat(longitude); // Converter long para número
+    const precNum = parseFloat(precoPassagem); // Converter prec para número
+    const passNum = parseInt(passagens, 10); // Converter passagens para número inteiro
 
-    const {id} = req.params
-    console.log(id)
+    const imgs = [];
+
+    const novoLocal = {
+        id,
+        nome,
+        latitude: latNum,
+        longitude: longNum,
+        precoPassagem: precNum,
+        passagens: passNum,
+        imgs
+    };
 
     const acharIndex = (p) => {
-        return p.id === Number(id)
-    }
+        return p.id === Number(id);
+    };
 
     const index = localidades.findIndex(acharIndex);
 
-    localidades.splice(index,1);
+    localidades.splice(index, 1, novoLocal);
 
-    fs.writeFileSync(bdPath, JSON.stringify(localidades,null,2));
+    fs.writeFileSync(bdPath, JSON.stringify(localidades, null, 2));
+
+    res.status(200).send(novoLocal);
+});
+
+// a rota delete apaga uma localidade ao se passar um id
+localidadeRouter.delete('/:id', (req, res) => {
+
+    const { id } = req.params;
+
+    const acharIndex = (p) => {
+        return p.id === Number(id);
+    };
+
+    const index = localidades.findIndex(acharIndex);
+
+    localidades.splice(index, 1);
+
+    fs.writeFileSync(bdPath, JSON.stringify(localidades, null, 2));
 
     res.status(204).send('Localidade Removida!');
 });
 
-
-
-
-
-
-
-module.exports =  { localidadeRouter }
+module.exports = { localidadeRouter };

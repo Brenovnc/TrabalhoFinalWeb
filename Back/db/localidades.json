@@ -4,15 +4,17 @@
     "nome": "UNIFEI",
     "latitude": -22.412742961670933,
     "longitude": -45.44970030988119,
+    "precoPassagem": 222,
     "passagens": 5,
     "imgs": []
   },
   {
     "id": 2,
     "nome": "Alemanha",
-    "latitude": "51,1657",
-    "longitude": "10,4515",
-    "passagens": "14",
+    "latitude": 51.1657,
+    "longitude": 10.4515,
+    "precoPassagem": 1000,
+    "passagens": 333,
     "imgs": []
   }
 ]

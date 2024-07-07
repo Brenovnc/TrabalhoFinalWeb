@@ -14,7 +14,7 @@ const InserirNovoLocal = () => {
     Longitude: yup.string().required('Insira a longitude'),
     qtdPassagens: yup.string().required('Insira a quantidade de passagens'),
     precoPassagem: yup.string().required('Insira o preço da passagem'),
-    // imagens: yup.mixed().required('Faça o upload de pelo menos uma imagem'),
+    imagens: yup.mixed().required('Faça o upload de pelo menos uma imagem'),
   });
 
   const handleSubmit = async (event) => {
@@ -29,7 +29,7 @@ const InserirNovoLocal = () => {
         Longitude: form.Longitude.value,
         qtdPassagens: form.qtdPassagens.value,
         precoPassagem: form.precoPassagem.value,
-        // imagens: form.imagens.files,
+        imagens: form.imagens.files,
       }, { abortEarly: false });
 
       // Preparação dos dados para envio ao servidor
@@ -38,10 +38,12 @@ const InserirNovoLocal = () => {
         latitude: form.Latitude.value,
         longitude: form.Longitude.value,
         passagens: form.qtdPassagens.value,
-        precoPassagem: form.precoPassagem.value,
+        precoPassagem: form.precoPassagem.value, // Converter para número
       };
 
-      console.log(data)
+      console.log(data);
+      console.log("PrecoPassagem: ", precoPassagem.value)
+      console.log("qtdPassagens: ", qtdPassagens.value)
 
       // Envio dos dados para o backend usando Axios
       const response = await axios.post('http://localhost:3000/api/localidades', data);
