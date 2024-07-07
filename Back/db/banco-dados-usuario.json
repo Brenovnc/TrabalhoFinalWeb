@@ -29,5 +29,21 @@
     "email": "ryan2@gmail.com",
     "password": "$2b$10$wM5qinKgq9RqUyRUQLG3oOVwaZb1zZgFddno95/fSksUgavs6RPW6",
     "tickets": []
+  },
+  {
+    "id": null,
+    "username": "Mais Um Pedro",
+    "role": "user",
+    "email": "pedroca@gmail.com",
+    "password": "$2b$10$xi5RC3orcQwBFSs//mQi7.xgt1ZsbicQdDZmv7PDObJ9cOK.lwLcu",
+    "tickets": []
+  },
+  {
+    "id": null,
+    "username": "Impossivel",
+    "role": "user",
+    "email": "imposs@gmail.com",
+    "password": "$2b$10$wvfKYRJW4mMWaXp6PL86UehpIAmVg867uKHDS.XstFbcrlubBVR7a",
+    "tickets": []
   }
 ]

@@ -17,5 +17,9 @@ Alternativamente, caso entre como um administrador, o usuário pode realizar um 
 Em ambas pastas *Back* e *Front*, algum módulos precisam ser instalados usando o npm. 
 <ol>
     <li> Certifique-se que seu computador possui a versão mais recente do nvm instalada. Você pode instalar o nvm seguindo as instruções presentes <a href="https://github.com/nvm-sh/nvm?tab=readme-ov-file#important-notes">neste link</a>
-    <li> 
+    <li> Entrando na pasta Front, rodar o comando <strong>npm i</strong> vai instalar todas as bibliotecas necessárias.
+    <li> Ainda na pasta Front, utilizar o comando <strong>npm run dev</strong> deve ligar o Front. Um link deve ser oferecido no terminal. Esse link te leva para a página de login. Não tente entrar ainda, pois o Back continua desligado.
+    <li> Entrando na pasta Back desta vez, rodamos o comando <strong>npm i</strong> novamente com a mesma intenção de antes.
+    <li> Sobrando apenas ligar o Back, o comando <strong>nodemon app.js</strong> resolve o problema.
+    <li> Agora, o projeto pode ser utilizado sem nenhuma complicação.
 </ol>
