@@ -1,11 +1,10 @@
 class Ticket {
 
-  constructor(id, location, price, user, travelDate, date, valid) {
+  constructor(id, location, price, user, date, valid) {
       this.id = id;
       this.location = location;
       this.price = price;
       this.userId = user;
-      this.travelDate = travelDate;
       this.date = date;
       this.valid = valid;
   }

@@ -18,7 +18,7 @@ const ticketRouter = express.Router();
 
 //rota que cria uma compra de passagem
 ticketRouter.post('/', isUser, (req, res) => {
-  const {location, price, travelDate} = req.body
+  const {location, price} = req.body
   const user = req.user
   const date = new Date();
 
@@ -30,11 +30,6 @@ ticketRouter.post('/', isUser, (req, res) => {
   }
 
   for(let ticket of ticketsCadastrados){
-    if(ticket.userId == user.id){
-      if(ticket.travelDate == travelDate && ticket.valid && ticket.location == location){
-        return res.status(400).json({ error: 'Você possui outra viagem para este lugar, nesta mesma data!'})
-      }
-    }
     ids.push(ticket.id);
   }
 
@@ -50,7 +45,6 @@ ticketRouter.post('/', isUser, (req, res) => {
     location,
     price,
     user.id,
-    travelDate,
     date,
     true,
   )

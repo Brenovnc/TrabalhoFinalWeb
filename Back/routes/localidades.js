@@ -34,10 +34,10 @@ localidadeRouter.get('/', (req, res) => {
 localidadeRouter.post('/', isAdmin, (req, res) => {
 
     const {nome, latitude, longitude, precoPassagem, passagens } = req.body;
-    const latNum = parseFloat(latitude); // Converter lat para número
-    const longNum = parseFloat(longitude); // Converter long para número
-    const precNum = parseFloat(precoPassagem); // Converter prec para número
-    const passNum = parseInt(passagens, 10); // Converter passagens para número inteiro
+    const latNum = parseFloat(latitude); 
+    const longNum = parseFloat(longitude);
+    const precNum = parseFloat(precoPassagem); 
+    const passNum = parseInt(passagens, 10); 
 
     const id = localidades[localidades.length - 1].id + 1;
 
