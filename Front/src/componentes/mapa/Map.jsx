@@ -49,7 +49,6 @@ const Map = ({ apikey }) => {
       try {
         const response = await axios.get('http://localhost:3000/api/localidades');
         const locais = response.data;
-        console.log(locais);
 
         locais.forEach(local => {
           addMarkerToMap(map.current, local.latitude, local.longitude, pinVermelhin, local);
@@ -98,20 +97,29 @@ const Map = ({ apikey }) => {
     setQuantidadePassagens(1); // Ao fechar o modal, resetamos a quantidade para 1
   };
 
-  const handleBuy = () => {
-    const precoTotal = quantidadePassagens * selectedLocation.precoPassagem;
-    alert(`Compra realizada de ${quantidadePassagens} passagens para ${selectedLocation.nome}. Preço total: R$ ${precoTotal.toFixed(2)}`);
+  const handleBuy = async () => {
+    try {
+      const response = await axios.post('http://localhost:3000/api/tickets/buyTicket', {
+        id: selectedLocation.id,
+        passagens: quantidadePassagens
+      });
 
-    // Reduz a quantidade de passagens disponíveis
-    setSelectedLocation(prevLocation => ({
-      ...prevLocation,
-      passagens: prevLocation.passagens - quantidadePassagens
-    }));
+      console.log(response)
 
-    // Reseta a quantidade selecionada para 1
-    setQuantidadePassagens(1);
+      // Atualiza localmente a quantidade de passagens disponíveis
+      setSelectedLocation(prevLocation => ({
+        ...prevLocation,
+        passagens: prevLocation.passagens - quantidadePassagens
+      }));
 
-    handleClose();
+      // Mostra um alerta de sucesso
+      const precoTotal = quantidadePassagens * selectedLocation.precoPassagem;
+      alert(`Compra realizada de ${quantidadePassagens} passagens para ${selectedLocation.nome}. Preço total: R$ ${precoTotal.toFixed(2)}`);
+
+      handleClose();
+    } catch (error) {
+      console.error('Erro ao comprar passagens:', error);
+    }
   };
 
   return (
