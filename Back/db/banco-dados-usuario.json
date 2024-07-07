@@ -28,5 +28,13 @@
       9,
       10
     ]
+  },
+  {
+    "id": 3,
+    "username": "pedro",
+    "role": "user",
+    "email": "pedro@gmail.com",
+    "password": "$2b$10$xuFnuoYevLcG/LfdyvPkDOR.NfKiU.4YUrczWoE0QQyDGUhG0jQsG",
+    "tickets": []
   }
 ]
