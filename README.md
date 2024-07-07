@@ -2,7 +2,7 @@
 Esse é um repositório criado para armazenar os arquivos do trabalho final do curso de Programação Web.
 <br>
 <br>
-O projeto consiste em um site para compra de passagens de avião para diversos lugares.<br>
+O projeto consiste em um site para compra de passagens de avião para diversos lugares.<br> <br>
 A página inicial é uma tela de login, com possibilidade de cadastro de novos usuários. Usamos um token de autenticação para garantir segurança de senhas e outras informações pessoais. <br>
 Ao entrar no site, um mapa interativo surge, com diversos pontos marcados. Ao clicar em um ponto, uma tela de compra de passagens para esse local irá surgir, e o cliente pode comprar quantas passagens quiser. <br>
 Alternativamente, caso entre como um administrador, o usuário pode realizar um CRUD com os locais no mapa, ou seja, adicionar locais novos, atualizar locais já existentes, e deletar locais desnecessários. <br>
@@ -19,5 +19,3 @@ Em ambas pastas *Back* e *Front*, algum módulos precisam ser instalados usando 
     <li> Certifique-se que seu computador possui a versão mais recente do nvm instalada. Você pode instalar o nvm seguindo as instruções presentes <a href="https://github.com/nvm-sh/nvm?tab=readme-ov-file#important-notes">neste link</a>
     <li> 
 </ol>
-
-# Utilização
