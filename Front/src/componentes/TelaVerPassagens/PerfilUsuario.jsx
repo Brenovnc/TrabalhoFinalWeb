@@ -48,6 +48,27 @@ const PerfilUsuario = () => {
     return formattedDate;
   };
 
+  useEffect(() => {
+    const fetchUserData = async () => {
+      try {
+        const token = sessionStorage.getItem('token'); // Assumindo que o token está no sessionStorage
+        const response = await axios.get('http://localhost:3000/api/usuario', {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        });
+
+        const userData = response.data;
+        setUsuario(prevUsuario => ({ ...prevUsuario, nome: userData.username }));
+
+      } catch (error) {
+        console.error('Erro ao buscar dados do usuário:', error);
+      }
+    };
+
+    fetchUserData();
+  }, []);
+
   const handleExcluirPassagem = async (passagemId) => {
     try {
       const token = sessionStorage.getItem('token'); // Assumindo que o token está no sessionStorage
@@ -60,13 +81,14 @@ const PerfilUsuario = () => {
       // Atualiza localmente as passagens do usuário após a exclusão
       const updatedPassagens = usuario.passagens.filter(passagem => passagem.id !== passagemId);
       setUsuario(prevUsuario => ({ ...prevUsuario, passagens: updatedPassagens }));
+
     } catch (error) {
       console.error('Erro ao excluir passagem:', error);
     }
   };
 
   useEffect(() => {
-    const fetchUserData = async () => {
+    const fetchUserTickets = async () => {
       try {
         const token = sessionStorage.getItem('token'); // Assumindo que o token está no sessionStorage
         const response = await axios.get('http://localhost:3000/api/passagens', {
@@ -77,12 +99,13 @@ const PerfilUsuario = () => {
 
         const tickets = response.data;
         setUsuario(prevUsuario => ({ ...prevUsuario, passagens: tickets }));
+
       } catch (error) {
         console.error('Erro ao buscar passagens do usuário:', error);
       }
     };
 
-    fetchUserData();
+    fetchUserTickets();
   }, []);
 
   return (
