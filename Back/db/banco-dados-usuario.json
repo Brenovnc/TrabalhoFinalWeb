@@ -1,0 +1,41 @@
+[
+  {
+    "id": 0,
+    "username": "ryan",
+    "role": "admin",
+    "email": "ryan@gmail.com",
+    "password": "$2b$10$F.xN5kldQJGQyCy.Igbgte51KNp.zodTVGIANbTVRT56If5WosQZ.",
+    "tickets": []
+  },
+  {
+    "id": 1,
+    "username": "breno",
+    "role": "admin",
+    "email": "breno@breno",
+    "password": "$2b$10$EvHfOoQpM8H0iC3rwCroqOAd0sFvZ5ge7t7ASIxSzhzc9FRO9zRHa",
+    "tickets": []
+  },
+  {
+    "id": 2,
+    "username": "breno",
+    "role": "user",
+    "email": "breno@breno2",
+    "password": "$2b$10$.lxspVJ5TFBueFDyyLnJhujE./KWmKnw2h7T1FBtGZI34D6igYoH.",
+    "tickets": [
+      6,
+      7,
+      8,
+      9,
+      10,
+      11
+    ]
+  },
+  {
+    "id": 3,
+    "username": "pedro",
+    "role": "user",
+    "email": "pedro@gmail.com",
+    "password": "$2b$10$xuFnuoYevLcG/LfdyvPkDOR.NfKiU.4YUrczWoE0QQyDGUhG0jQsG",
+    "tickets": []
+  }
+]

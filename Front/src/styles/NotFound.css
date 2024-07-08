@@ -1,0 +1,52 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+* {
+    font-family: "Montserrat", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400 ;
+    font-style: normal;
+}
+
+.principal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.tela-central {
+    text-align: center;
+    background-color: #fefefe;
+    padding: 40px;
+    border: 3px double whitesmoke;
+    border-radius: 20px;
+}
+
+button {
+    display: block;
+    margin: 20px auto 0;
+}
+
+p {
+    margin: 10px;
+    padding: 20px;
+}
+
+.icon-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 30px;
+}
+
+.sad-icon {
+    font-size: 40px; /* Adjust the size as needed */
+    margin-right: 30px; /* Space between icons */
+    color: #DDDDDD; /* Adjust the color as needed */
+}
+
+.plane-icon {
+    font-size: 50px; /* Adjust the size as needed */
+    margin-left: 30px; /* Space between icons */
+    color: #DDDDDD; /* Adjust the color as needed */
+}

@@ -1,0 +1,75 @@
+/* fonts*/
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+.montserrat{
+    font-family: "Montserrat", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400 ;
+    font-style: normal;
+}
+.montserrat-bold{
+    font-family: "Montserrat", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 700 ;
+    font-style: normal;
+}
+
+/* cores criadas*/
+:root {
+    --dark-brown: #593122;
+    --light-brown: #A6775B;
+    --dark-green: #142615;
+    --medium-green: #415936;
+    --light-green: #7a9765;
+}
+
+.bg-dark-brown {
+    background-color: var(--dark-brown) !important;
+}
+
+.bg-light-brown {
+    background-color: var(--light-brown) !important;
+}
+
+.bg-dark-green {
+    --bs-bg-opacity: 1;
+    background-color: var(--dark-green) !important;
+}
+
+.bg-medium-green {
+    --bs-bg-opacity: 1;
+    background-color: var(--medium-green) !important;
+}
+
+.bg-light-green {
+    background-color: var(--light-green) !important;
+}
+
+/* Text color classes */
+.text-dark-brown {
+    color: var(--dark-brown) !important;
+}
+
+.text-light-brown {
+    color: var(--light-brown) !important;
+}
+
+.text-dark-green {
+    color: var(--dark-green) !important;
+}
+
+.text-medium-green {
+    color: var(--medium-green) !important;
+}
+
+.text-light-green {
+    color: var(--light-green) !important;
+}
+
+h1{
+    font-size: 30px;
+}
+
+h2{
+    font-size: 25px;
+}

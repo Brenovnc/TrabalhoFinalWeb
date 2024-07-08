@@ -1,0 +1,34 @@
+[
+  {
+    "id": 6,
+    "location": "UNIFEI",
+    "price": 222,
+    "userId": 2,
+    "date": "2024-07-07T21:42:39.803Z",
+    "valid": true
+  },
+  {
+    "id": 7,
+    "location": "UNIFEI",
+    "price": 222,
+    "userId": 2,
+    "date": "2024-07-07T21:55:32.050Z",
+    "valid": true
+  },
+  {
+    "id": 8,
+    "location": "UNIFEI",
+    "price": 222,
+    "userId": 2,
+    "date": "2024-07-07T22:04:25.669Z",
+    "valid": true
+  },
+  {
+    "id": 9,
+    "location": "UNIFEI",
+    "price": 222,
+    "userId": 2,
+    "date": "2024-07-07T22:21:17.952Z",
+    "valid": true
+  }
+]

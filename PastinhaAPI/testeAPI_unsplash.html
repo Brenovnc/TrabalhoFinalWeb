@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unsplash API Example</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .image-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+        }
+        .image-container img {
+            max-width: 300px;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <h1>Unsplash Image Gallery</h1>
+    <div class="image-container" id="image-container"></div>
+
+    <script>
+        const accessKey = 'YOUR_ACCESS_KEY';
+        const apiUrl = `https://api.unsplash.com/photos?client_id=${accessKey}`;
+
+        async function fetchImages() {
+            try {
+                const response = await fetch(apiUrl);
+                const data = await response.json();
+                displayImages(data);
+            } catch (error) {
+                console.error('Error fetching images:', error);
+            }
+        }
+
+        function displayImages(images) {
+            const imageContainer = document.getElementById('image-container');
+            images.forEach(image => {
+                const imgElement = document.createElement('img');
+                imgElement.src = image.urls.small;
+                imgElement.alt = image.alt_description || 'Unsplash Image';
+                imageContainer.appendChild(imgElement);
+            });
+        }
+
+        fetchImages();
+    </script>
+</body>
+</html>
