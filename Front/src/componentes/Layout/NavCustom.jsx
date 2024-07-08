@@ -30,7 +30,7 @@ export default function NavCustom() {
     <Navbar className="bg-dark-green sticky-top">
       <Container>
         <Navbar.Brand className="text-light montserrat-bold" href="/home">
-          Site de viagens
+          Traveller
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">

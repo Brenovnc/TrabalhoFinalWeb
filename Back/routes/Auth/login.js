@@ -17,7 +17,7 @@ loginRouter.post('/', async (req,res) => {
         if(user.email === email){
             const passwordValidado = await bcrypt.compare(password, user.password);
             if(passwordValidado===true){
-                const tokenAcesso = jwt.sign(user, 'teste', { expiresIn: '1h' });
+                const tokenAcesso = jwt.sign(user, 'dslbakdjbasldblshdbashdbashdjlsabdhjdblasdbjdbsflhbhwlebrewhjjkfkajdç', { expiresIn: '1h' });
                 return res.status(200).json(tokenAcesso);
             }
             else

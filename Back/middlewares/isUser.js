@@ -9,7 +9,7 @@ function isUser(req, res, next) {
   }
 
   const decoded = verifyToken(token);
-  if (decoded ) {
+  if (decoded) {
     req.user = decoded;
     next();
   } else {

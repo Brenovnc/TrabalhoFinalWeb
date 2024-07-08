@@ -68,7 +68,7 @@ export default function LoginUser() {
             <Image src={bgLogin} alt="Background" className="w-100 h-100" style={{ objectFit: 'cover' }} />
             <div className="position-absolute top-0 start-0 p-5 pt-5 text-white text-left">
               <h1 className="display-3 montserrat-bold">Voe além dos seus sonhos</h1>
-              <p className="lead">Descubra o mundo conosco!</p>
+              <p className="lead montserrat-bold">Descubra o mundo conosco!</p>
             </div>
           </Col>
           <Col md={4} className="d-flex align-items-center justify-content-center bg-green-500">

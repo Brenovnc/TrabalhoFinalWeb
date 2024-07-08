@@ -4,7 +4,7 @@ require('dotenv').config();
 function verifyToken(token) {
 
   try {
-      const decoded = jwt.verify(token, 'teste');
+      const decoded = jwt.verify(token, 'dslbakdjbasldblshdbashdbashdjlsabdhjdblasdbjdbsflhbhwlebrewhjjkfkajdç');
       return decoded;
   } catch (error) {
       console.error('Invalid token:', error);
