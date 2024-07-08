@@ -4,7 +4,6 @@ import axios from 'axios';
 import pinVermelhin from '../../assets/pinVermelhin.png';
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
-import MapScreen from './MapScreen'; // Certifique-se de que você está usando o MapScreen corretamente
 
 const useHereMap = (apikey, mapContainerRef) => {
   const platform = useRef(null);
@@ -42,7 +41,6 @@ const Map = ({ apikey }) => {
   const [markers, setMarkers] = useState([]);
   const [selectedLocation, setSelectedLocation] = useState(null);
   const [showModal, setShowModal] = useState(false);
-  const [quantidadePassagens, setQuantidadePassagens] = useState(1); // Estado para controlar a quantidade de passagens
 
   useEffect(() => {
     const fetchData = async () => {
@@ -73,52 +71,38 @@ const Map = ({ apikey }) => {
     marker.addEventListener('tap', () => {
       setSelectedLocation(local);
       setShowModal(true);
-      setQuantidadePassagens(1); // Ao abrir o modal, resetamos a quantidade para 1
     });
 
     map.addObject(marker);
   };
 
-  const handleIncrease = () => {
-    if (quantidadePassagens < selectedLocation.passagens) {
-      setQuantidadePassagens(prev => prev + 1);
-    }
-  };
-
-  const handleDecrease = () => {
-    if (quantidadePassagens > 1) {
-      setQuantidadePassagens(prev => prev - 1);
-    }
-  };
-
   const handleClose = () => {
     setShowModal(false);
     setSelectedLocation(null);
-    setQuantidadePassagens(1); // Ao fechar o modal, resetamos a quantidade para 1
   };
 
   const handleBuy = async () => {
     try {
-      const response = await axios.post('http://localhost:3000/api/tickets/buyTicket', {
-        id: selectedLocation.id,
-        passagens: quantidadePassagens
+      const token = sessionStorage.getItem('token');
+      console.log(token);
+
+      const response = await axios.post('http://localhost:3000/api/passagens', {
+        location: selectedLocation.nome,
+        price: selectedLocation.precoPassagem,
+      }, {
+        headers: {
+          Authorization: `Bearer ${token}` // Envia o token no cabeçalho da requisição
+        }
       });
-
-      console.log(response)
-
-      // Atualiza localmente a quantidade de passagens disponíveis
-      setSelectedLocation(prevLocation => ({
-        ...prevLocation,
-        passagens: prevLocation.passagens - quantidadePassagens
-      }));
-
-      // Mostra um alerta de sucesso
-      const precoTotal = quantidadePassagens * selectedLocation.precoPassagem;
-      alert(`Compra realizada de ${quantidadePassagens} passagens para ${selectedLocation.nome}. Preço total: R$ ${precoTotal.toFixed(2)}`);
-
+  
+      console.log(response);
+  
+      alert(`Compra realizada com sucesso para ${selectedLocation.nome}`);
+  
       handleClose();
     } catch (error) {
       console.error('Erro ao comprar passagens:', error);
+      alert('Erro ao comprar passagens. Por favor, tente novamente.');
     }
   };
 
@@ -133,11 +117,6 @@ const Map = ({ apikey }) => {
           <p>Descrição: {selectedLocation?.descricao}</p>
           <p>Passagens disponíveis: {selectedLocation?.passagens}</p>
           <p>Preço: {selectedLocation?.precoPassagem}</p>
-          <div className="quantidadePassagens">
-            <Button variant="outline-secondary" onClick={handleDecrease}>-</Button>
-            <span className="quantidadeText">{quantidadePassagens}</span>
-            <Button variant="outline-secondary" onClick={handleIncrease}>+</Button>
-          </div>
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>

@@ -9,41 +9,32 @@
   },
   {
     "id": 1,
-    "username": "ryan",
-    "role": "user",
-    "email": "ryan1@gmail.com",
-    "password": "$2b$10$fPX.YV6uZ2S611.k3maeHOVfbGDtjQxa4Wf4taYvGcpoIPjWmoaiC",
-    "tickets": [
-      0,
-      1,
-      2,
-      3,
-      4,
-      5
-    ]
+    "username": "breno",
+    "role": "admin",
+    "email": "breno@breno",
+    "password": "$2b$10$EvHfOoQpM8H0iC3rwCroqOAd0sFvZ5ge7t7ASIxSzhzc9FRO9zRHa",
+    "tickets": []
   },
   {
     "id": 2,
-    "username": "ryan",
+    "username": "breno",
     "role": "user",
-    "email": "ryan2@gmail.com",
-    "password": "$2b$10$wM5qinKgq9RqUyRUQLG3oOVwaZb1zZgFddno95/fSksUgavs6RPW6",
-    "tickets": []
+    "email": "breno@breno2",
+    "password": "$2b$10$.lxspVJ5TFBueFDyyLnJhujE./KWmKnw2h7T1FBtGZI34D6igYoH.",
+    "tickets": [
+      6,
+      7,
+      8,
+      9,
+      10
+    ]
   },
   {
-    "id": null,
-    "username": "Mais Um Pedro",
+    "id": 3,
+    "username": "pedro",
     "role": "user",
-    "email": "pedroca@gmail.com",
-    "password": "$2b$10$xi5RC3orcQwBFSs//mQi7.xgt1ZsbicQdDZmv7PDObJ9cOK.lwLcu",
-    "tickets": []
-  },
-  {
-    "id": null,
-    "username": "Impossivel",
-    "role": "user",
-    "email": "imposs@gmail.com",
-    "password": "$2b$10$wvfKYRJW4mMWaXp6PL86UehpIAmVg867uKHDS.XstFbcrlubBVR7a",
+    "email": "pedro@gmail.com",
+    "password": "$2b$10$xuFnuoYevLcG/LfdyvPkDOR.NfKiU.4YUrczWoE0QQyDGUhG0jQsG",
     "tickets": []
   }
 ]

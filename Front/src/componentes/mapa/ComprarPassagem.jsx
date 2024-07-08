@@ -12,38 +12,19 @@ import Col from 'react-bootstrap/Col';
 
 import imgText from '../../assets/mainPage.jpg';
 import { FaLock } from 'react-icons/fa'; // Importando o ícone de cadeado
+import FooterCustom from '../Layout/FooterCustom.jsx';
+import NavCustom from '../Layout/NavCustom.jsx';
 
 function ComprarPassagem() {
 
     return (
         <>
-            <Navbar className="bg-dark-green sticky-top ">
-                <Container>
-                    <Navbar.Brand  className="text-light montserrat-bold" href="/home">Site de viagens</Navbar.Brand>
-                    <Navbar.Collapse id="basic-navbar-nav">
-                        <Nav className="me-auto ">
-                            <Nav.Link href="/perfil" className="link-with-icon text-light-green">
-                                Perfil
-                            </Nav.Link>
-                            <Nav.Link href="/admin" className="link-with-icon text-light-green">
-                            <FaLock className='cadeado text-light-green'/> Admin
-                            </Nav.Link>
-                        </Nav>
-                    </Navbar.Collapse>
-                    <Navbar.Toggle />
-                    <Navbar.Collapse className="justify-content-end">
-                        <Navbar.Text>
-                            <Button variant="danger text-light" href='/'>Sair</Button>
-                            {/* <a href="/">Nome do usuário</a> */}
-                        </Navbar.Text>
-                    </Navbar.Collapse>
-                </Container>
-            </Navbar>
+            <NavCustom />
             <h1 className='text-dark-green montserrat-bold pt-4 pb-2 ms-5'>Localidades disponiveis</h1>
 
             <Map apikey={"El7O8U0SD-D3gBWpF7O9aiaWQErLIqPljaEgGRXhuSE"} />
 
-            <Container fluid className=" mt-3" >
+            <Container fluid className="" >
                 <Row className="h-50">
                     <Col md={6} className="d-flex flex-column justify-content-center bg-dark-green text-light p-5">
                     <h2 className='montserrat-bold pt-2 pd-2 ms-5'>Descubra o Mundo: Reserve sua Viagem Hoje!</h2>
@@ -60,16 +41,7 @@ function ComprarPassagem() {
                 </Row>
             </Container>
 
-            <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 mb-0 mt-2 border-top h-50 bg">
-                <p class="col-md-3 mb-0 text-body-secondary">© 2024 Company, Inc</p>
-
-                <ul class="nav col-md-5 justify-content-end me-5">
-                    <li class="nav-item"><a href="https://github.com/pdrVenancio" class="nav-link px-2 text-body-secondary" target='_blank'>Pedro Venancio</a></li>
-                    <li class="nav-item"><a href="https://github.com/Pedroca2005BR" class="nav-link px-2 text-body-secondary"  target='_blank'>Pedro de Paula</a></li>
-                    <li class="nav-item"><a href="https://github.com/Brenovnc" class="nav-link px-2 text-body-secondary"  target='_blank'>Breno</a></li>
-                    <li class="nav-item"><a href="https://github.com/RyanForward" class="nav-link px-2 text-body-secondary"  target='_blank'>Ryan</a></li>
-                </ul>
-            </footer>
+            <FooterCustom />
 
         </>
     

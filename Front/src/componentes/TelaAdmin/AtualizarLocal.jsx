@@ -41,6 +41,7 @@ const AtualizarLocal = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     const form = event.currentTarget;
+    const token = sessionStorage.getItem('token');
 
     try {
       await schema.validate({
@@ -61,7 +62,11 @@ const AtualizarLocal = () => {
         precoPassagem: formData.precoPassagem,
       };
 
-      const response = await axios.put(`http://localhost:3000/api/localidades`, data);
+      const response = await axios.put(`http://localhost:3000/api/localidades`, data, {
+        headers: {
+          Authorization: `Bearer ${token}` // Envia o token no cabeçalho da requisição
+        }
+      });
 
       if (response.status === 200) {
         alert('Local atualizado com sucesso!');

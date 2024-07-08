@@ -66,7 +66,7 @@ ticketRouter.post('/', isUser, (req, res) => {
 });
 
 //rota que trás uma passagem específica do user autenticado
-ticketRouter.get('/:id', isUser, (req, res) => {
+ticketRouter.get('/:id', (req, res) => {
   const ticketId = req.params.id;
   const { id } = req.user
 
