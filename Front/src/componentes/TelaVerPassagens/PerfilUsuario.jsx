@@ -143,8 +143,6 @@ const PerfilUsuario = () => {
           </Col>
         </Row>
       </div>
-
-      <FooterCustom/>
     </>
   );
 };

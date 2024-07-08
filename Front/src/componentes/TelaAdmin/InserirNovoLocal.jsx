@@ -132,15 +132,6 @@ const InserirNovoLocal = () => {
           </Form.Control.Feedback>
         </Form.Group>
       </Row>
-
-      <Form.Group as={Col} controlId="imagens">
-        <Form.Label>Upload de Imagens</Form.Label>
-        <Form.Control type="file" name="imagens" multiple accept="image/*" required />
-        <Form.Control.Feedback type="invalid">
-          Faça o upload de pelo menos uma imagem.
-        </Form.Control.Feedback>
-      </Form.Group>
-
       <div className="d-flex justify-content-center mt-3">
         <Button variant="success" type="submit" id="enviar">
           Enviar
