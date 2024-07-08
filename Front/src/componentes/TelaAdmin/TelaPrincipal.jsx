@@ -6,6 +6,9 @@ import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import Container from 'react-bootstrap/Container';
 
+import NavCustom from '../Layout/NavCustom';
+import FooterCustom from '../Layout/FooterCustom';
+
 import InserirNovoLocal from './InserirNovoLocal';
 import AtualizarLocal from './AtualizarLocal';
 import RemoverLocal from './RemoverLocal';
@@ -66,22 +69,7 @@ const TelaPrincipal = () => {
 
   return (
     <>
-      <Navbar className="bg-dark-green sticky-top">
-        <Container>
-          <Navbar.Brand className='text-light montserrat-bold' href="/home">Site de viagens</Navbar.Brand>
-          <Navbar.Toggle aria-controls="basic-navbar-nav" />
-          <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="me-auto ">
-            <Nav.Link href="/perfil" className="link-with-icon text-light-green">
-                  Perfil
-              </Nav.Link>
-              <Nav.Link href="/admin" className="link-with-icon text-light-green">
-                <FaLock className='cadeado text-light-green'/> Admin
-              </Nav.Link>
-          </Nav>
-          </Navbar.Collapse>
-        </Container>
-      </Navbar>
+      <NavCustom />
 
       <div className="conteudo-principal">
         {renderizarComponenteSelecionado()}
@@ -105,16 +93,7 @@ const TelaPrincipal = () => {
         </div>
       </div>
 
-      <footer className="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 mb-0 mt-2 border-top h-50 bg">
-        <p className="col-md-3 mb-0 text-body-secondary">© 2024 Company, Inc</p>
-
-        <ul className="nav col-md-5 justify-content-end me-5">
-            <li className="nav-item"><a href="https://github.com/pdrVenancio" className="nav-link px-2 text-body-secondary" target='_blank'>Pedro Venancio</a></li>
-            <li className="nav-item"><a href="https://github.com/Pedroca2005BR" className="nav-link px-2 text-body-secondary" target='_blank'>Pedro de Paula</a></li>
-            <li className="nav-item"><a href="https://github.com/Brenovnc" className="nav-link px-2 text-body-secondary" target='_blank'>Breno</a></li>
-            <li className="nav-item"><a href="https://github.com/RyanForward" className="nav-link px-2 text-body-secondary" target='_blank'>Ryan</a></li>
-        </ul>
-      </footer>
+      <FooterCustom />
     </>
   );
 };

@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Button, Col, Container, Image, Nav, Navbar, Row } from 'react-bootstrap';
 import { FaLock } from 'react-icons/fa';
 import axios from 'axios';
+import NavCustom from '../Layout/NavCustom';
+import FooterCustom from '../Layout/FooterCustom';
 
 // Placeholder image URL
 const placeholderImg = 'https://via.placeholder.com/150';
@@ -84,30 +86,8 @@ const PerfilUsuario = () => {
 
   return (
     <>
-      <Navbar className="bg-dark-green sticky-top">
-        <Container>
-          <Navbar.Brand className="text-light montserrat-bold" href="/home">Site de viagens</Navbar.Brand>
-          <Navbar.Toggle aria-controls="basic-navbar-nav" />
-          <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="me-auto">
-              <Nav.Link href="/perfil" className="link-with-icon text-light-green">
-                Perfil
-              </Nav.Link>
-              <Nav.Link href="/admin" className="link-with-icon text-light-green">
-                <FaLock className='cadeado text-light-green' /> Admin
-              </Nav.Link>
-            </Nav>
-          </Navbar.Collapse>
-          <Navbar.Collapse className="justify-content-end">
-            <Navbar.Text>
-              <Button variant="danger text-light" href='/'>Sair</Button>
-              {/* <a href="/">Nome do usuário</a> */}
-            </Navbar.Text>
-          </Navbar.Collapse>
-        </Container>
-      </Navbar>
-
-      <div className="container mt-4">
+      <NavCustom />
+      <div className="container mt-4 pb-5">
         <Row>
           <Col xs={12} md={4} className="mb-4 d-flex justify-content-center align-items-center">
             <div className="bg-white p-3 rounded shadow text-center">
@@ -143,16 +123,7 @@ const PerfilUsuario = () => {
         </Row>
       </div>
 
-      <footer className="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 mb-0 mt-2 border-top h-50 bg">
-        <p className="col-md-3 mb-0 text-body-secondary">© 2024 Company, Inc</p>
-
-        <ul className="nav col-md-5 justify-content-end me-5">
-          <li className="nav-item"><a href="https://github.com/pdrVenancio" className="nav-link px-2 text-body-secondary" target='_blank'>Pedro Venancio</a></li>
-          <li className="nav-item"><a href="https://github.com/Pedroca2005BR" className="nav-link px-2 text-body-secondary" target='_blank'>Pedro de Paula</a></li>
-          <li className="nav-item"><a href="https://github.com/Brenovnc" className="nav-link px-2 text-body-secondary" target='_blank'>Breno</a></li>
-          <li className="nav-item"><a href="https://github.com/RyanForward" className="nav-link px-2 text-body-secondary" target='_blank'>Ryan</a></li>
-        </ul>
-      </footer>
+      <FooterCustom/>
     </>
   );
 };
