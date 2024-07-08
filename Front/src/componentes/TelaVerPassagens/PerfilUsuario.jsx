@@ -9,6 +9,30 @@ import FooterCustom from '../Layout/FooterCustom';
 const placeholderImg = 'https://via.placeholder.com/150';
 
 const PerfilUsuario = () => {
+
+  const [userData, setUserData] = useState(null);
+  
+  useEffect(() => {
+    const fetchUserData = async () => {
+      try {
+        const token = sessionStorage.getItem('token');
+        const response = await axios.get('http://localhost:3000/api/usuario', {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        });
+
+        const userData = response.data;
+        setUserData(prevUserData => ({ ...prevUserData, nome: userData.username }));
+        console.log(userData);
+        
+      } catch (error) {
+        console.error('Erro ao buscar dados do usuário:', error);
+      }
+    };
+
+    fetchUserData();
+  }, []);
   const [usuario, setUsuario] = useState({ nome: 'Nome do Usuário', passagens: [] });
 
   const formatDate = (dateString) => {
@@ -66,9 +90,9 @@ const PerfilUsuario = () => {
       <NavCustom />
       <div className="container mt-4 pb-5">
         <Row>
-          <Col xs={12} md={4} className="mb-4 d-flex justify-content-center align-items-center">
-            <div className="bg-white p-3 rounded shadow text-center">
-              <h2 className="h5 mb-4">Perfil do Usuário</h2>
+          <Col xs={12} md={4} className="mb-4 d-flex justify-content-center align-items-center ">
+            <div className="bg-white p-3 rounded shadow text-center h-100 w-100">
+              <h2 className="h5 mb-4"></h2>
               <Image
                 src={usuario.nome ? `https://via.placeholder.com/150` : placeholderImg}
                 roundedCircle
@@ -76,9 +100,6 @@ const PerfilUsuario = () => {
                 className="mb-3"
               />
               <h4 className="h6 mb-3">{usuario.nome}</h4>
-              <p className="text-muted mb-3">Detalhes aleatórios do usuário</p>
-              <Button variant="outline-primary" className="me-2">Editar Perfil</Button>
-              <Button variant="outline-danger">Excluir Conta</Button>
             </div>
           </Col>
           <Col xs={12} md={8}>
