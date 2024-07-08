@@ -86,5 +86,13 @@
     "userId": 2,
     "date": "2024-07-07T22:21:22.068Z",
     "valid": true
+  },
+  {
+    "id": 11,
+    "location": "UNIFEI",
+    "price": 222,
+    "userId": 2,
+    "date": "2024-07-08T00:17:36.742Z",
+    "valid": true
   }
 ]
