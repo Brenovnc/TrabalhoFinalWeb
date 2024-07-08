@@ -2,10 +2,16 @@
 Esse é um repositório criado para armazenar os arquivos do trabalho final do curso de Programação Web.
 <br>
 <br>
-O projeto consiste em um site para compra de passagens de avião para diversos lugares.<br> <br>
+O projeto consiste em um site para compra de passagens de avião para diversos lugares utilizando um mapa para encontrar os lugares disponíveis.<br> <br>
 A página inicial é uma tela de login, com possibilidade de cadastro de novos usuários. Usamos um token de autenticação para garantir segurança de senhas e outras informações pessoais. <br>
 Ao entrar no site, um mapa interativo surge, com diversos pontos marcados. Ao clicar em um ponto, uma tela de compra de passagens para esse local irá surgir, e o cliente pode comprar quantas passagens quiser. <br>
 Alternativamente, caso entre como um administrador, o usuário pode realizar um CRUD com os locais no mapa, ou seja, adicionar locais novos, atualizar locais já existentes, e deletar locais desnecessários. <br>
+
+# Problema solucionado
+O problema solucionado pelo código seria encontrar passagens para lugares através de um mapa, o que facilita a geolocalização do usuário para encontrar o destino mais apropriado
+
+# Porque o problema é importante?
+O site facilita a compra de passagens já que exibe em um mapa a exata localização dos lugares que possuem passagens disponíveis
 
 # Integrantes
 [Pedro de Paula Gonçalves](https://github.com/Pedroca2005BR) <br>
