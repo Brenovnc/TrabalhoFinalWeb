@@ -33,7 +33,7 @@
   {
     "id": 3,
     "username": "pedro",
-    "role": "user",
+    "role": "admin",
     "email": "pedro@gmail.com",
     "password": "$2b$10$xuFnuoYevLcG/LfdyvPkDOR.NfKiU.4YUrczWoE0QQyDGUhG0jQsG",
     "tickets": []
