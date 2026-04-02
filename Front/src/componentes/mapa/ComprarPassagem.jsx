@@ -22,7 +22,7 @@ function ComprarPassagem() {
             <NavCustom />
             <h1 className='text-dark-green montserrat-bold pt-4 pb-2 ms-5'>Localidades disponiveis</h1>
 
-            <Map apikey={"El7O8U0SD-D3gBWpF7O9aiaWQErLIqPljaEgGRXhuSE"} />
+            <Map />
 
             <Container fluid className="" >
                 <Row className="h-50">
