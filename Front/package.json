@@ -10,10 +10,10 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@here/maps-api-for-javascript": "^1.54.3",
     "@hookform/resolvers": "^3.6.0",
     "axios": "^1.7.2",
     "bootstrap": "^5.3.3",
+    "leaflet": "^1.9.4",
     "i": "^0.3.7",
     "npm": "^10.8.1",
     "react": "^18.3.1",

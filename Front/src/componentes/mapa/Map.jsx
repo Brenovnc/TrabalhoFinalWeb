@@ -1,80 +1,83 @@
 import React, { useEffect, useRef, useState } from 'react';
-import H from '@here/maps-api-for-javascript';
 import axios from 'axios';
+import L from 'leaflet';
+import 'leaflet/dist/leaflet.css';
 import pinVermelhin from '../../assets/pinVermelhin.png';
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 
-const useHereMap = (apikey, mapContainerRef) => {
-  const platform = useRef(null);
-  const map = useRef(null);
-
-  useEffect(() => {
-    if (!map.current && mapContainerRef.current) {
-      platform.current = new H.service.Platform({ apikey });
-      const defaultLayers = platform.current.createDefaultLayers({ pois: true });
-
-      const newMap = new H.Map(
-        mapContainerRef.current,
-        defaultLayers.vector.normal.map,
-        { zoom: 5, center: { lat: -18.5122, lng: -44.5550 } }
-      );
-
-      const behavior = new H.mapevents.Behavior(new H.mapevents.MapEvents(newMap));
-
-      map.current = newMap;
-    }
-
-    return () => {
-      if (map.current) {
-        map.current.dispose();
-      }
-    };
-  }, [apikey, mapContainerRef]);
-
-  return { platform, map };
-};
-
-const Map = ({ apikey }) => {
-  const mapRef = useRef(null);
-  const { map } = useHereMap(apikey, mapRef);
-  const [markers, setMarkers] = useState([]);
+const Map = () => {
+  const mapContainerRef = useRef(null);
+  const mapInstanceRef = useRef(null);
   const [selectedLocation, setSelectedLocation] = useState(null);
   const [showModal, setShowModal] = useState(false);
+  const [mapReady, setMapReady] = useState(false);
 
   useEffect(() => {
+    if (!mapContainerRef.current) {
+      return;
+    }
+
+    mapInstanceRef.current = L.map(mapContainerRef.current).setView([-18.5122, -44.5550], 5);
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; OpenStreetMap contributors'
+    }).addTo(mapInstanceRef.current);
+
+    setMapReady(true);
+
+    return () => {
+      mapInstanceRef.current?.remove();
+      mapInstanceRef.current = null;
+      setMapReady(false);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (!mapReady || !mapInstanceRef.current) {
+      return;
+    }
+
+    let createdMarkers = [];
+
     const fetchData = async () => {
       try {
         const response = await axios.get('http://localhost:3000/api/localidades');
         const locais = response.data;
 
-        locais.forEach(local => {
-          addMarkerToMap(map.current, local.latitude, local.longitude, pinVermelhin, local);
-        });
+        createdMarkers.forEach(marker => mapInstanceRef.current.removeLayer(marker));
+        createdMarkers = [];
 
-        setMarkers(locais);
+        locais.forEach(local => {
+          const marker = L.marker(
+            [local.latitude, local.longitude],
+            {
+              icon: L.icon({
+                iconUrl: pinVermelhin,
+                iconSize: [32, 32],
+                iconAnchor: [16, 32]
+              })
+            }
+          ).addTo(mapInstanceRef.current);
+
+          marker.on('click', () => {
+            setSelectedLocation(local);
+            setShowModal(true);
+          });
+
+          createdMarkers.push(marker);
+        });
       } catch (error) {
         console.error('Error fetching data:', error);
       }
     };
 
-    if (map.current) {
-      fetchData();
-    }
-  }, [map]);
+    fetchData();
 
-  const addMarkerToMap = (map, lat, lng, imageUrl, local) => {
-    const icon = new H.map.Icon(imageUrl, { size: { w: 50, h: 50 } });
-    const coords = { lat: parseFloat(lat), lng: parseFloat(lng) };
-    const marker = new H.map.Marker(coords, { icon });
-
-    marker.addEventListener('tap', () => {
-      setSelectedLocation(local);
-      setShowModal(true);
-    });
-
-    map.addObject(marker);
-  };
+    return () => {
+      createdMarkers.forEach(marker => mapInstanceRef.current?.removeLayer(marker));
+    };
+  }, [mapReady]);
 
   const handleClose = () => {
     setShowModal(false);
@@ -82,6 +85,9 @@ const Map = ({ apikey }) => {
   };
 
   const handleBuy = async () => {
+    if (!selectedLocation) {
+      return;
+    }
     try {
       const token = sessionStorage.getItem('token');
       console.log(token);
@@ -97,6 +103,7 @@ const Map = ({ apikey }) => {
   
       console.log(response);
   
+      if (!selectedLocation) return;
       alert(`Compra realizada com sucesso para ${selectedLocation.nome}`);
   
       handleClose();
@@ -108,7 +115,7 @@ const Map = ({ apikey }) => {
 
   return (
     <div className="divEnvolveMapa">
-      <div className="mapa" ref={mapRef}></div>
+      <div className="mapa" ref={mapContainerRef}></div>
       <Modal show={showModal} onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title>{selectedLocation?.nome}</Modal.Title>
