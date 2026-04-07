@@ -9,7 +9,7 @@ import CreateUser from './componentes/auth/CreateUser.jsx'
 import NotFound from './componentes/NotFound.jsx'
 import ProtectedRoute from './componentes/ProtectedRoute.jsx'
 
-import ComprarPassagem from './componentes/mapa/ComprarPassagem.jsx'
+import MapPage from './componentes/mapa/Map.jsx'
 import InserirNovoLocal from './componentes/TelaAdmin/TelaPrincipal.jsx'
 import PerfilUsuario from './componentes/TelaVerPassagens/PerfilUsuario.jsx'
 
@@ -30,11 +30,11 @@ const routes = createBrowserRouter([
   },
   {
     path: '/home',
-    element: (
-      <ProtectedRoute>
-        <ComprarPassagem />
-      </ProtectedRoute>
-    ),
+        element: (
+          <ProtectedRoute>
+            <MapPage />
+          </ProtectedRoute>
+        ),
   },
   {
     path: '/perfil',

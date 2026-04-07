@@ -1,141 +1,51 @@
-import React, { useEffect, useRef, useState } from 'react';
-import axios from 'axios';
-import L from 'leaflet';
-import 'leaflet/dist/leaflet.css';
-import pinVermelhin from '../../assets/pinVermelhin.png';
-import Modal from 'react-bootstrap/Modal';
-import Button from 'react-bootstrap/Button';
+import React from 'react';
+import PinDetails from './PinDetails.jsx';
+import "../../styles/ComprarPassagem.css";
 
-const Map = () => {
-  const mapContainerRef = useRef(null);
-  const mapInstanceRef = useRef(null);
-  const [selectedLocation, setSelectedLocation] = useState(null);
-  const [showModal, setShowModal] = useState(false);
-  const [mapReady, setMapReady] = useState(false);
+import Container from 'react-bootstrap/Container';
+import Navbar from 'react-bootstrap/Navbar';
+import Nav from 'react-bootstrap/Nav';
+import Button from 'react-bootstrap/Button'
+import Image from 'react-bootstrap/Image';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 
-  useEffect(() => {
-    if (!mapContainerRef.current) {
-      return;
-    }
+import imgText from '../../assets/mainPage.jpg';
+import { FaLock } from 'react-icons/fa'; // Importando o ícone de cadeado
+import FooterCustom from '../Layout/FooterCustom.jsx';
+import NavCustom from '../Layout/NavCustom.jsx';
 
-    mapInstanceRef.current = L.map(mapContainerRef.current).setView([-18.5122, -44.5550], 5);
+function MapPage() {
 
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      attribution: '&copy; OpenStreetMap contributors'
-    }).addTo(mapInstanceRef.current);
+    return (
+        <>
+            <NavCustom />
+            <h1 className='text-dark-green montserrat-bold pt-4 pb-2 ms-5'>Localidades disponiveis</h1>
 
-    setMapReady(true);
+            <PinDetails />
 
-    return () => {
-      mapInstanceRef.current?.remove();
-      mapInstanceRef.current = null;
-      setMapReady(false);
-    };
-  }, []);
+            <Container fluid className="" >
+                <Row className="h-50">
+                    <Col md={6} className="d-flex flex-column justify-content-center bg-dark-green text-light p-5">
+                    <h2 className='montserrat-bold pt-2 pd-2 ms-5'>Descubra o Mundo: Reserve sua Viagem Hoje!</h2>
+                    <p className='montserrat text-start ms-5'>
+                        Embarque em uma jornada de descobertas e experiências inesquecíveis! É hora de deixar o cotidiano para trás e explorar novos horizontes. Compre sua passagem agora e prepare-se para vivenciar momentos únicos em destinos deslumbrantes ao redor do mundo.
+                        Seja para relaxar em praias paradisíacas, explorar cidades históricas repletas de cultura, ou se aventurar em paisagens naturais de tirar o fôlego, há um lugar esperando por você. Não deixe para depois o que pode se tornar uma das melhores experiências da sua vida.
+                        Aproveite as tarifas especiais e as condições imperdíveis para garantir seu lugar nessa aventura. Faça as malas, escolha seu próximo destino e reserve sua passagem agora mesmo. O mundo está esperando por você!
+                        Não perca tempo. Viaje, explore, viva!
+                    </p>
+                    </Col>
+                    <Col md={6} className="d-flex align-items-center justify-content-center p-0">
+                    <Image src={imgText} alt="Background" className="w-100" style={{ objectFit: 'cover', height: '70vh' }} />
+                    </Col>
+                </Row>
+            </Container>
 
-  useEffect(() => {
-    if (!mapReady || !mapInstanceRef.current) {
-      return;
-    }
+            <FooterCustom />
 
-    let createdMarkers = [];
+        </>
+    
+    );
+}
 
-    const fetchData = async () => {
-      try {
-        const response = await axios.get('http://localhost:3000/api/localidades');
-        const locais = response.data;
-
-        createdMarkers.forEach(marker => mapInstanceRef.current.removeLayer(marker));
-        createdMarkers = [];
-
-        locais.forEach(local => {
-          const marker = L.marker(
-            [local.latitude, local.longitude],
-            {
-              icon: L.icon({
-                iconUrl: pinVermelhin,
-                iconSize: [32, 32],
-                iconAnchor: [16, 32]
-              })
-            }
-          ).addTo(mapInstanceRef.current);
-
-          marker.on('click', () => {
-            setSelectedLocation(local);
-            setShowModal(true);
-          });
-
-          createdMarkers.push(marker);
-        });
-      } catch (error) {
-        console.error('Error fetching data:', error);
-      }
-    };
-
-    fetchData();
-
-    return () => {
-      createdMarkers.forEach(marker => mapInstanceRef.current?.removeLayer(marker));
-    };
-  }, [mapReady]);
-
-  const handleClose = () => {
-    setShowModal(false);
-    setSelectedLocation(null);
-  };
-
-  const handleBuy = async () => {
-    if (!selectedLocation) {
-      return;
-    }
-    try {
-      const token = sessionStorage.getItem('token');
-      console.log(token);
-
-      const response = await axios.post('http://localhost:3000/api/passagens', {
-        location: selectedLocation.nome,
-        price: selectedLocation.precoPassagem,
-      }, {
-        headers: {
-          Authorization: `Bearer ${token}` // Envia o token no cabeçalho da requisição
-        }
-      });
-  
-      console.log(response);
-  
-      if (!selectedLocation) return;
-      alert(`Compra realizada com sucesso para ${selectedLocation.nome}`);
-  
-      handleClose();
-    } catch (error) {
-      console.error('Erro ao comprar passagens:', error);
-      alert('Erro ao comprar passagens. Por favor, tente novamente.');
-    }
-  };
-
-  return (
-    <div className="divEnvolveMapa">
-      <div className="mapa" ref={mapContainerRef}></div>
-      <Modal show={showModal} onHide={handleClose}>
-        <Modal.Header closeButton>
-          <Modal.Title>{selectedLocation?.nome}</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <p>Descrição: {selectedLocation?.descricao}</p>
-          <p>Passagens disponíveis: {selectedLocation?.passagens}</p>
-          <p>Preço: {selectedLocation?.precoPassagem}</p>
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
-            Fechar
-          </Button>
-          <Button variant="success" onClick={handleBuy}>
-            Comprar
-          </Button>
-        </Modal.Footer>
-      </Modal>
-    </div>
-  );
-};
-
-export default Map;
+export default MapPage;
