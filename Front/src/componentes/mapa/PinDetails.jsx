@@ -1,10 +1,22 @@
-import React, { useEffect, useRef, useState } from 'react';
+﻿import React, { useEffect, useRef, useState } from 'react';
 import axios from 'axios';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import pinVermelhin from '../../assets/pinVermelhin.png';
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
+
+const formatCurrency = (value) => {
+  const numberValue = Number(value);
+  if (Number.isNaN(numberValue)) {
+    return 'R$ 0,00';
+  }
+  return new Intl.NumberFormat('pt-BR', {
+    style: 'currency',
+    currency: 'BRL',
+    minimumFractionDigits: 2,
+  }).format(numberValue);
+};
 
 const PinDetails = () => {
   const mapContainerRef = useRef(null);
@@ -97,7 +109,7 @@ const PinDetails = () => {
         price: selectedLocation.precoPassagem,
       }, {
         headers: {
-          Authorization: `Bearer ${token}` // Envia o token no cabeçalho da requisição
+          Authorization: `Bearer ${token}` // Envia o token no cabeÃ§alho da requisiÃ§Ã£o
         }
       });
   
@@ -116,16 +128,28 @@ const PinDetails = () => {
   return (
     <div className="divEnvolveMapa">
       <div className="mapa" ref={mapContainerRef}></div>
-      <Modal show={showModal} onHide={handleClose}>
+      <Modal show={showModal} onHide={handleClose} centered>
         <Modal.Header closeButton>
-          <Modal.Title>{selectedLocation?.nome}</Modal.Title>
+          <Modal.Title className="pin-modal-title">{selectedLocation?.nome}</Modal.Title>
         </Modal.Header>
-        <Modal.Body>
-          <p>Descrição: {selectedLocation?.descricao}</p>
-          <p>Passagens disponíveis: {selectedLocation?.passagens}</p>
-          <p>Preço: {selectedLocation?.precoPassagem}</p>
+        <Modal.Body className="pin-modal-body">
+          <p className="pin-modal-description">
+            {selectedLocation?.descricao ?? 'Descrição não disponível para este destino.'}
+          </p>
+          <div className="pin-modal-row">
+            <span className="pin-modal-label">Disponibilidade</span>
+            <span className="pin-modal-stock">
+              {selectedLocation?.passagens ?? 0} passagens
+            </span>
+          </div>
+          <div className="pin-modal-row pin-modal-price-row">
+            <span className="pin-modal-label">Preço médio</span>
+            <strong className="pin-modal-price">
+              {formatCurrency(selectedLocation?.precoPassagem)}
+            </strong>
+          </div>
         </Modal.Body>
-        <Modal.Footer>
+        <Modal.Footer className="pin-modal-footer">
           <Button variant="secondary" onClick={handleClose}>
             Fechar
           </Button>
