@@ -13,8 +13,13 @@ const { isAdmin } = require('./../middlewares/isAdmin');
 
 
 //Conexao com banco de dados
+const readJsonFile = (filePath) => {
+    const raw = fs.readFileSync(filePath, { encoding: 'utf-8' });
+    return JSON.parse(raw.replace(/^\uFEFF/, ''));
+};
+
 const bdPath = path.join(__dirname,'..','db','localidades.json');
-const localidades = JSON.parse(fs.readFileSync(bdPath, {encoding: 'utf-8'}));
+const localidades = readJsonFile(bdPath);
 
 // a rota get retorna todas as localidades com passagens disponiveis
 localidadeRouter.get('/', (req, res) => {
@@ -33,7 +38,7 @@ localidadeRouter.get('/', (req, res) => {
 // a rota post adiciona uma nova localidade
 localidadeRouter.post('/', isAdmin, (req, res) => {
 
-    const {nome, latitude, longitude, precoPassagem, passagens } = req.body;
+    const {nome, latitude, longitude, precoPassagem, passagens, descricao } = req.body;
     const latNum = parseFloat(latitude); 
     const longNum = parseFloat(longitude);
     const precNum = parseFloat(precoPassagem); 
@@ -55,6 +60,7 @@ localidadeRouter.post('/', isAdmin, (req, res) => {
         longitude: longNum,
         precoPassagem: precNum,
         passagens: passNum,
+        descricao: descricao?.trim() ?? '',
         imgs
     };
 
@@ -69,7 +75,7 @@ localidadeRouter.post('/', isAdmin, (req, res) => {
 // a rota put atualiza alguma localidade
 localidadeRouter.put('/', isAdmin, (req, res) => {
 
-    const { id, nome, latitude, longitude, precoPassagem, passagens } = req.body;
+    const { id, nome, latitude, longitude, precoPassagem, passagens, descricao } = req.body;
     const latNum = parseFloat(latitude); // Converter lat para número
     const longNum = parseFloat(longitude); // Converter long para número
     const precNum = parseFloat(precoPassagem); // Converter prec para número
@@ -84,6 +90,7 @@ localidadeRouter.put('/', isAdmin, (req, res) => {
         longitude: longNum,
         precoPassagem: precNum,
         passagens: passNum,
+        descricao: descricao?.trim() ?? '',
         imgs
     };
 

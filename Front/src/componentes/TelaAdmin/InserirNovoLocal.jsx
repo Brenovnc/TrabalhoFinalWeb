@@ -5,12 +5,19 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import axios from 'axios';
 
+const MAX_DESCRIPTION_LENGTH = 300;
+
 const schema = yup.object().shape({
   NomeLocal: yup.string().trim().required('Insira um nome'),
   Latitude: yup.string().trim().required('Insira a latitude'),
   Longitude: yup.string().trim().required('Insira a longitude'),
   qtdPassagens: yup.string().trim().required('Insira a quantidade de passagens'),
   precoPassagem: yup.string().trim().required('Insira o preço da passagem'),
+  DescricaoLocal: yup
+    .string()
+    .trim()
+    .max(MAX_DESCRIPTION_LENGTH, `Máximo de ${MAX_DESCRIPTION_LENGTH} caracteres`)
+    .required('Insira uma descrição'),
 });
 
 const InserirNovoLocal = () => {
@@ -20,7 +27,8 @@ const InserirNovoLocal = () => {
     Latitude: '',
     Longitude: '',
     qtdPassagens: '',
-    precoPassagem: ''
+    precoPassagem: '',
+    DescricaoLocal: ''
   });
 
   const handleChange = (event) => {
@@ -43,6 +51,7 @@ const InserirNovoLocal = () => {
         longitude: parseFloat(formData.Longitude),
         passagens: parseInt(formData.qtdPassagens, 10),
         precoPassagem: parseFloat(formData.precoPassagem),
+        descricao: formData.DescricaoLocal?.trim() ?? '',
       };
 
       const response = await axios.post('http://localhost:3000/api/localidades', data, {
@@ -67,7 +76,8 @@ const InserirNovoLocal = () => {
           Latitude: '',
           Longitude: '',
           qtdPassagens: '',
-          precoPassagem: ''
+          precoPassagem: '',
+          DescricaoLocal: ''
         });
         setValidated(false);
       } else {
@@ -109,6 +119,25 @@ const InserirNovoLocal = () => {
         />
         <Form.Control.Feedback type="invalid">
           Insira um nome para o local.
+        </Form.Control.Feedback>
+      </Form.Group>
+
+      <Form.Group as={Col} controlId="DescricaoLocal" className="mb-3">
+        <Form.Label>Descrição do local</Form.Label>
+        <Form.Control
+          as="textarea"
+          rows={3}
+          maxLength={MAX_DESCRIPTION_LENGTH}
+          name="DescricaoLocal"
+          value={formData.DescricaoLocal}
+          onChange={handleChange}
+          required
+        />
+        <Form.Text muted>
+          {formData.DescricaoLocal.length}/{MAX_DESCRIPTION_LENGTH} caracteres
+        </Form.Text>
+        <Form.Control.Feedback type="invalid">
+          Insira uma descrição para o local (máx {MAX_DESCRIPTION_LENGTH} caracteres).
         </Form.Control.Feedback>
       </Form.Group>
 

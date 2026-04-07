@@ -4,8 +4,13 @@ const path = require('path');
 const User = require("../../models/User");
 const bcrypt = require('bcrypt');
 
+const readJsonFile = (filePath) => {
+  const raw = fs.readFileSync(filePath, { encoding: 'utf-8' });
+  return JSON.parse(raw.replace(/^\uFEFF/, ''));
+};
+
 const bdPath = path.join(__dirname,'..','..', 'db','banco-dados-usuario.json');
-const usuariosCadastrados = JSON.parse(fs.readFileSync(bdPath, {encoding: 'utf-8'}));
+const usuariosCadastrados = readJsonFile(bdPath);
 
 const createRouter = Router()
 

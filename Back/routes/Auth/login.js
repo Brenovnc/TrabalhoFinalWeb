@@ -7,8 +7,13 @@ const fs = require('fs');
 const path = require('path');
 require('dotenv').config();
 
+const readJsonFile = (filePath) => {
+  const raw = fs.readFileSync(filePath, { encoding: 'utf-8' });
+  return JSON.parse(raw.replace(/^\uFEFF/, ''));
+};
+
 const bdPath = path.join(__dirname,'..', '..', 'db','banco-dados-usuario.json');
-const usuariosCadastrados = JSON.parse(fs.readFileSync(bdPath, {encoding: 'utf-8'}));
+const usuariosCadastrados = readJsonFile(bdPath);
 
 loginRouter.post('/', async (req,res) => {
 

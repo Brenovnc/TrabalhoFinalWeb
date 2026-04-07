@@ -6,6 +6,7 @@
     "longitude": -45.44970030988119,
     "precoPassagem": 222,
     "passagens": 10,
+    "descricao": "Campus em Itajubá com infraestrutura de pesquisa e vista para a Serra da Mantiqueira, polo da Engenharia.",
     "imgs": []
   },
   {
@@ -15,7 +16,8 @@
     "longitude": 3,
     "precoPassagem": 3,
     "passagens": 3,
-    "imgs": []
+    "imgs": [],
+    "descricao": "Vale tranquilo com trilhas suaves e pousadas acolhedoras."
   },
   {
     "id": 4,
@@ -24,7 +26,8 @@
     "longitude": -43.1729,
     "precoPassagem": 30,
     "passagens": 10,
-    "imgs": []
+    "imgs": [],
+    "descricao": "Cidade costeira famosa pelo Cristo Redentor, praias e vida cultural vibrante."
   },
   {
     "id": 5,
@@ -33,7 +36,8 @@
     "longitude": -46.6333,
     "precoPassagem": 30,
     "passagens": 10,
-    "imgs": []
+    "imgs": [],
+    "descricao": "Metrópole pulsante com gastronomia diversa, centros culturais e skyline imponente."
   },
   {
     "id": 6,
@@ -42,7 +46,8 @@
     "longitude": -38.5016,
     "precoPassagem": 30,
     "passagens": 10,
-    "imgs": []
+    "imgs": [],
+    "descricao": "Capital baiana com Pelourinho colorido, música alta e gastronomia afro-brasileira."
   },
   {
     "id": 7,
@@ -51,7 +56,8 @@
     "longitude": -47.8828,
     "precoPassagem": 30,
     "passagens": 10,
-    "imgs": []
+    "imgs": [],
+    "descricao": "Planaltos e arquitetura modernista de Niemeyer cercados por amplas áreas verdes."
   },
   {
     "id": 8,
@@ -60,7 +66,8 @@
     "longitude": -43.9352,
     "precoPassagem": 30,
     "passagens": 10,
-    "imgs": []
+    "imgs": [],
+    "descricao": "Cidade mineira acolhedora com trilhas na Serra do Curral e botecos tradicionais."
   },
   {
     "id": 9,
@@ -69,7 +76,8 @@
     "longitude": -49.2733,
     "precoPassagem": 30,
     "passagens": 10,
-    "imgs": []
+    "imgs": [],
+    "descricao": "Capital paranaense conhecida por parques planejados e transporte eficiente."
   },
   {
     "id": 10,
@@ -78,7 +86,8 @@
     "longitude": -51.2177,
     "precoPassagem": 30,
     "passagens": 10,
-    "imgs": []
+    "imgs": [],
+    "descricao": "Capital gaúcha cheia de praças, museus e uma cena cultural ativa."
   },
   {
     "id": 11,
@@ -87,7 +96,8 @@
     "longitude": -38.5434,
     "precoPassagem": 30,
     "passagens": 10,
-    "imgs": []
+    "imgs": [],
+    "descricao": "Praias urbanas e vida noturna animada com forte presença de forró."
   },
   {
     "id": 12,
@@ -96,7 +106,8 @@
     "longitude": -60.0217,
     "precoPassagem": 30,
     "passagens": 10,
-    "imgs": []
+    "imgs": [],
+    "descricao": "Porta de entrada para a Amazônia com teatro histórico e comunidades ribeirinhas."
   },
   {
     "id": 13,
@@ -105,7 +116,8 @@
     "longitude": -34.877,
     "precoPassagem": 30,
     "passagens": 10,
-    "imgs": []
+    "imgs": [],
+    "descricao": "Cidade litorânea com rios, cultura pernambucana e gastronomia do mar."
   },
   {
     "id": 14,
@@ -114,7 +126,8 @@
     "longitude": -48.5039,
     "precoPassagem": 30,
     "passagens": 10,
-    "imgs": []
+    "imgs": [],
+    "descricao": "Porta da Amazônia com o Mercado Ver-o-Peso e sabores amazônicos intensos."
   },
   {
     "id": 15,
@@ -123,7 +136,8 @@
     "longitude": -40.3128,
     "precoPassagem": 30,
     "passagens": 10,
-    "imgs": []
+    "imgs": [],
+    "descricao": "Ilha urbana com praias limpas, esportes náuticos e ciclovias à beira-mar."
   },
   {
     "id": 16,
@@ -132,7 +146,8 @@
     "longitude": -48.548,
     "precoPassagem": 30,
     "passagens": 10,
-    "imgs": []
+    "imgs": [],
+    "descricao": "Ilha catarinense com praias badaladas, trilhas e gastronomia marítima."
   },
   {
     "id": 17,
@@ -141,7 +156,8 @@
     "longitude": -49.2648,
     "precoPassagem": 30,
     "passagens": 10,
-    "imgs": []
+    "imgs": [],
+    "descricao": "Cidade interiorana com parques urbanos, sertanejo e feiras verdes."
   },
   {
     "id": 18,
@@ -150,7 +166,8 @@
     "longitude": -34.8631,
     "precoPassagem": 30,
     "passagens": 10,
-    "imgs": []
+    "imgs": [],
+    "descricao": "Capital paraibana com orla tranquila e vasta área verde no coração da cidade."
   },
   {
     "id": 19,
@@ -159,7 +176,8 @@
     "longitude": -35.2009,
     "precoPassagem": 30,
     "passagens": 10,
-    "imgs": []
+    "imgs": [],
+    "descricao": "Capital potiguar com dunas douradas e roteiros de buggy no litoral."
   },
   {
     "id": 20,
@@ -168,7 +186,8 @@
     "longitude": -35.735,
     "precoPassagem": 30,
     "passagens": 10,
-    "imgs": []
+    "imgs": [],
+    "descricao": "Praias de águas cristalinas, piscinas naturais e gastronomia praiana vibrante."
   },
   {
     "id": 21,
@@ -177,7 +196,8 @@
     "longitude": -56.0979,
     "precoPassagem": 30,
     "passagens": 10,
-    "imgs": []
+    "imgs": [],
+    "descricao": "Porta para o Pantanal com culinária à base de peixe e clima quente."
   },
   {
     "id": 22,
@@ -186,7 +206,8 @@
     "longitude": -54.6201,
     "precoPassagem": 30,
     "passagens": 10,
-    "imgs": []
+    "imgs": [],
+    "descricao": "Encruzilhada do Cerrado com diversidade cultural pantaneira e mercados vivos."
   },
   {
     "id": 23,
@@ -195,7 +216,8 @@
     "longitude": -44.2966,
     "precoPassagem": 30,
     "passagens": 10,
-    "imgs": []
+    "imgs": [],
+    "descricao": "Capital maranhense com centro histórico colonial tombado e festas juninas."
   },
   {
     "id": 24,
@@ -204,7 +226,8 @@
     "longitude": -42.8034,
     "precoPassagem": 30,
     "passagens": 10,
-    "imgs": []
+    "imgs": [],
+    "descricao": "No Piauí, conhecida pelos rios Parnaíba e Poti e pelo calor constante."
   },
   {
     "id": 25,
@@ -213,7 +236,8 @@
     "longitude": -37.0731,
     "precoPassagem": 30,
     "passagens": 10,
-    "imgs": []
+    "imgs": [],
+    "descricao": "Capital sergipana com praias urbanas calmas e ciclovias à beira-mar."
   },
   {
     "id": 26,
@@ -222,6 +246,7 @@
     "longitude": -48.3336,
     "precoPassagem": 30,
     "passagens": 10,
-    "imgs": []
+    "imgs": [],
+    "descricao": "Planejada no Tocantins, cercada por lagos, parques e ciclovias bem sinalizadas."
   }
 ]

@@ -3,6 +3,8 @@ import * as yup from 'yup';
 import { Button, Form, Col, Row } from 'react-bootstrap';
 import axios from 'axios';
 
+const MAX_DESCRIPTION_LENGTH = 300;
+
 const AtualizarLocal = () => {
   const [validated, setValidated] = useState(false);
   const [selectedLocal, setSelectedLocal] = useState('');
@@ -12,7 +14,8 @@ const AtualizarLocal = () => {
     Latitude: '',
     Longitude: '',
     qtdPassagens: '',
-    precoPassagem: ''
+    precoPassagem: '',
+    DescricaoLocal: ''
   });
 
   useEffect(() => {
@@ -35,12 +38,18 @@ const AtualizarLocal = () => {
     Longitude: yup.string().required('Insira a longitude'),
     qtdPassagens: yup.string().required('Insira a quantidade de passagens'),
     precoPassagem: yup.string().required('Insira o preço da passagem'),
+    DescricaoLocal: yup
+      .string()
+      .trim()
+      .max(MAX_DESCRIPTION_LENGTH, `Máximo de ${MAX_DESCRIPTION_LENGTH} caracteres`)
+      .required('Insira uma descrição'),
     localSelecionado: yup.string().required('Selecione uma localidade existente'),
   });
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     const form = event.currentTarget;
+    setValidated(true);
     const token = sessionStorage.getItem('token');
 
     try {
@@ -50,6 +59,7 @@ const AtualizarLocal = () => {
         Longitude: formData.Longitude,
         qtdPassagens: formData.qtdPassagens,
         precoPassagem: formData.precoPassagem,
+        DescricaoLocal: formData.DescricaoLocal,
         localSelecionado: selectedLocal,
       }, { abortEarly: false });
 
@@ -60,6 +70,7 @@ const AtualizarLocal = () => {
         longitude: formData.Longitude,
         passagens: formData.qtdPassagens,
         precoPassagem: formData.precoPassagem,
+        descricao: formData.DescricaoLocal?.trim() ?? '',
       };
 
       const response = await axios.put(`http://localhost:3000/api/localidades`, data, {
@@ -76,7 +87,8 @@ const AtualizarLocal = () => {
           Latitude: '',
           Longitude: '',
           qtdPassagens: '',
-          precoPassagem: ''
+          precoPassagem: '',
+          DescricaoLocal: ''
         });
         setSelectedLocal('');
         setValidated(false);
@@ -114,6 +126,7 @@ const AtualizarLocal = () => {
         Longitude: local.longitude,
         qtdPassagens: local.passagens,
         precoPassagem: local.precoPassagem,
+        DescricaoLocal: local.descricao ?? ''
       });
     } else {
       setSelectedLocal('');
@@ -122,7 +135,8 @@ const AtualizarLocal = () => {
         Latitude: '',
         Longitude: '',
         qtdPassagens: '',
-        precoPassagem: ''
+        precoPassagem: '',
+        DescricaoLocal: ''
       });
       alert('Localidade não encontrada.');
     }
@@ -161,6 +175,25 @@ const AtualizarLocal = () => {
         />
         <Form.Control.Feedback type="invalid">
           Insira um nome para o local.
+        </Form.Control.Feedback>
+      </Form.Group>
+
+      <Form.Group as={Col} controlId="DescricaoLocal" className="mb-3">
+        <Form.Label>Descrição do local</Form.Label>
+        <Form.Control
+          as="textarea"
+          rows={3}
+          maxLength={MAX_DESCRIPTION_LENGTH}
+          name="DescricaoLocal"
+          value={formData.DescricaoLocal}
+          onChange={(e) => setFormData({ ...formData, DescricaoLocal: e.target.value })}
+          required
+        />
+        <Form.Text muted>
+          {formData.DescricaoLocal.length}/{MAX_DESCRIPTION_LENGTH} caracteres
+        </Form.Text>
+        <Form.Control.Feedback type="invalid">
+          Insira uma descrição para o local (máx {MAX_DESCRIPTION_LENGTH} caracteres).
         </Form.Control.Feedback>
       </Form.Group>
 

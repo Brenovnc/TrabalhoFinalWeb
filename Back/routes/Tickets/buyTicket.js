@@ -3,14 +3,19 @@ const { isUser } = require('../../middlewares/isUser');
 const fs = require('fs');
 const path = require('path');
 
+const readJsonFile = (filePath) => {
+  const raw = fs.readFileSync(filePath, { encoding: 'utf-8' });
+  return JSON.parse(raw.replace(/^\uFEFF/, ''));
+};
+
 const bdTickets = path.join(__dirname,'..','..', 'db','banco-dados-tickets.json');
-const ticketsCadastrados = JSON.parse(fs.readFileSync(bdTickets, {encoding: 'utf-8'}));
+const ticketsCadastrados = readJsonFile(bdTickets);
 
 const bdUsers = path.join(__dirname,'..', '..', 'db','banco-dados-usuario.json');
-const usuariosCadastrados = JSON.parse(fs.readFileSync(bdUsers, {encoding: 'utf-8'}));
+const usuariosCadastrados = readJsonFile(bdUsers);
 
 const bdLocalidades = path.join(__dirname,'..', '..', 'db','localidades.json');
-const localidadesCadastradas = JSON.parse(fs.readFileSync(bdLocalidades, {encoding: 'utf-8'}));
+const localidadesCadastradas = readJsonFile(bdLocalidades);
 
 const Ticket = require('../../models/Ticket');
 
