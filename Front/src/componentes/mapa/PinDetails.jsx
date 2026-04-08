@@ -1,10 +1,12 @@
-﻿import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import axios from 'axios';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import pinVermelhin from '../../assets/pinVermelhin.png';
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const formatCurrency = (value) => {
   const numberValue = Number(value);
@@ -16,6 +18,16 @@ const formatCurrency = (value) => {
     currency: 'BRL',
     minimumFractionDigits: 2,
   }).format(numberValue);
+};
+
+const TOAST_CONFIG = {
+  position: 'top-right',
+  autoClose: 3000,
+  hideProgressBar: false,
+  closeOnClick: true,
+  pauseOnHover: true,
+  draggable: true,
+  progress: undefined,
 };
 
 const PinDetails = () => {
@@ -57,20 +69,17 @@ const PinDetails = () => {
         const response = await axios.get('http://localhost:3000/api/localidades');
         const locais = response.data;
 
-        createdMarkers.forEach(marker => mapInstanceRef.current.removeLayer(marker));
+        createdMarkers.forEach((marker) => mapInstanceRef.current.removeLayer(marker));
         createdMarkers = [];
 
-        locais.forEach(local => {
-          const marker = L.marker(
-            [local.latitude, local.longitude],
-            {
-              icon: L.icon({
-                iconUrl: pinVermelhin,
-                iconSize: [32, 32],
-                iconAnchor: [16, 32]
-              })
-            }
-          ).addTo(mapInstanceRef.current);
+        locais.forEach((local) => {
+          const marker = L.marker([local.latitude, local.longitude], {
+            icon: L.icon({
+              iconUrl: pinVermelhin,
+              iconSize: [32, 32],
+              iconAnchor: [16, 32],
+            }),
+          }).addTo(mapInstanceRef.current);
 
           marker.on('click', () => {
             setSelectedLocation(local);
@@ -81,13 +90,14 @@ const PinDetails = () => {
         });
       } catch (error) {
         console.error('Error fetching data:', error);
+        toast.error('Erro ao buscar localidades. Por favor, tente novamente mais tarde.', TOAST_CONFIG);
       }
     };
 
     fetchData();
 
     return () => {
-      createdMarkers.forEach(marker => mapInstanceRef.current?.removeLayer(marker));
+      createdMarkers.forEach((marker) => mapInstanceRef.current?.removeLayer(marker));
     };
   }, [mapReady]);
 
@@ -102,31 +112,42 @@ const PinDetails = () => {
     }
     try {
       const token = sessionStorage.getItem('token');
-      console.log(token);
 
-      const response = await axios.post('http://localhost:3000/api/passagens', {
-        location: selectedLocation.nome,
-        price: selectedLocation.precoPassagem,
-      }, {
-        headers: {
-          Authorization: `Bearer ${token}` // Envia o token no cabeÃ§alho da requisiÃ§Ã£o
-        }
-      });
-  
-      console.log(response);
-  
-      if (!selectedLocation) return;
-      alert(`Compra realizada com sucesso para ${selectedLocation.nome}`);
-  
+      await toast.promise(
+        axios.post(
+          'http://localhost:3000/api/passagens',
+          {
+            location: selectedLocation.nome,
+            price: selectedLocation.precoPassagem,
+          },
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        ),
+        {
+          pending: 'Finalizando compra...',
+          success: `Compra realizada com sucesso para ${selectedLocation.nome}!`,
+          error: {
+            render({ data }) {
+              const serverMessage = data?.response?.data?.message ?? data?.response?.data;
+              return serverMessage || 'Erro ao comprar passagens. Por favor, tente novamente.';
+            },
+          },
+        },
+        TOAST_CONFIG
+      );
+
       handleClose();
     } catch (error) {
       console.error('Erro ao comprar passagens:', error);
-      alert('Erro ao comprar passagens. Por favor, tente novamente.');
     }
   };
 
   return (
     <div className="divEnvolveMapa">
+      <ToastContainer {...TOAST_CONFIG} />
       <div className="mapa" ref={mapContainerRef}></div>
       <Modal show={showModal} onHide={handleClose} centered>
         <Modal.Header closeButton>
